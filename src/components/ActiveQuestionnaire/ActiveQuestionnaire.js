@@ -4,18 +4,21 @@ import AnswersList from './AnswersList/AnswersList'
 
 const ActiveQuestionnaire = (props) => {
     return (
-        <div className={classes.ActiveQuestionnaire}>   
+        <div className={classes.ActiveQuestionnaire}>  
+         
             <p className={classes.Question}>
                 <span>
-                    <strong>1.</strong> &nbsp;
+                    <strong>{props.QuestionNum}.</strong> &nbsp;
                     {props.textQuestion}
                 </span>
 
-                <small>4 из 12</small>
+                <small>{props.QuestionNum} из {props.totalNumQuestions}</small>
             </p>
 
             <AnswersList 
                 answers={props.answers}
+                answerClick={props.answerClick}
+                answerState={props.answerState}
             />
         </div>
     )

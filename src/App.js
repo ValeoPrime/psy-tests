@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from './hoc/Layout/Layout'
 import MainQuiz from './containers/MainQuiz'
 
+
 import './App.css';
 
 function App() {
