@@ -2,14 +2,18 @@ import React, {Component} from 'react'
 import styles from './MainQuiz.css';
 import ActiveQuestionnaire from '../components/ActiveQuestionnaire/ActiveQuestionnaire'
 import FinishedQuestionnaire from '../components/finishedQuestionnaire/FinishedQuestionnaire'
+import GuestScreen from '../components/UI/GuestScreen/GuestScreen'
+import QuestionDB from '../components/DB/QuestionDB'
 
 
 class MainQuiz extends Component {
     state = {
+        guestScreen: true,
         results: {}, //{[id]: success error}
         isFinished: false,
         activeQuestion: 0,
         answerState: null,// {[answerId: 'success' or 'error']}
+        questionnaireTitle: null,
         questions: [
             {
                 question: 'Какого цвета колбаса?',
@@ -97,33 +101,60 @@ class MainQuiz extends Component {
         })
     }
 
+    onStart =(questionnaireTitle) => {
+        let Title = null
+        let questions = []
+        // console.log('элементы опроса',Questionare.questionnaireTitle)
+        Object.values(QuestionDB).map((Questionare, index)=>{
+            if(questionnaireTitle === Questionare.questionnaireTitle){
+                Title = Questionare.questionnaireTitle
+                questions = Questionare.questions
+            }
+            
+        })
+
+        this.setState({
+            guestScreen: false,
+            questionnaireTitle: Title,
+            questions: questions
+        })
+    }
+
 
     render(){
         return(
-            <div className={styles.MainQuiz}>
-               <div className={styles.MainQuizWrapper}>
-                    <h1>"Тестовое задание"</h1>
-               {
-                   this.state.isFinished 
-                   ? <FinishedQuestionnaire 
-                    results={this.state.results}
-                    questions={this.state.questions}
-                    onRetry={this.retryHandler}
-                   />
-                   : <ActiveQuestionnaire 
-                    key={this.state.questions[this.state.activeQuestion].id}
-                    answers={this.state.questions[this.state.activeQuestion].answers}
-                    textQuestion={this.state.questions[this.state.activeQuestion].question}
-                    answerClick={this.answerClick}
-                    totalNumQuestions={this.state.questions.length}
-                    QuestionNum={this.state.activeQuestion + 1 }
-                    answerState={this.state.answerState}
-                   />
-               }
-               
-            
-               </div>
-            </div>
+            <React.Fragment>
+                {
+                    this.state.guestScreen 
+                    ?  <GuestScreen 
+                        onStart={this.onStart}
+                    /> 
+                    : <div className={styles.MainQuiz}>
+                        <div className={styles.MainQuizWrapper}>
+                            <h1>"{this.state.questionnaireTitle}"</h1>
+                        {
+                            this.state.isFinished 
+                            ? <FinishedQuestionnaire 
+                            results={this.state.results}
+                            questions={this.state.questions}
+                            onRetry={this.retryHandler}
+                            />
+                            : <ActiveQuestionnaire 
+                            key={this.state.questions[this.state.activeQuestion].id}
+                            answers={this.state.questions[this.state.activeQuestion].answers}
+                            textQuestion={this.state.questions[this.state.activeQuestion].question}
+                            answerClick={this.answerClick}
+                            totalNumQuestions={this.state.questions.length}
+                            QuestionNum={this.state.activeQuestion + 1 }
+                            answerState={this.state.answerState}
+                            />
+                        }
+                        
+                    
+                        </div>
+                    </div>
+                }
+            </React.Fragment>
         )
     }
 }

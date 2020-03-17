@@ -14,8 +14,11 @@
 }
 
 .Drawer.close {
+    display: none;
     transform: translateX(-300px);
 }
+
+
 
 .Drawer ul {
     list-style: none;

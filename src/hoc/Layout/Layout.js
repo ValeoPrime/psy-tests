@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import styles from './Layout.css'
 import MenuToggle from '../../components/Navigation/MenuToggle/MenuToggle'
+import Drawer from '../../components/Navigation/Drawer/Drawer'
 
 class Layout extends Component {
 
@@ -9,15 +10,19 @@ class Layout extends Component {
     }
 
     ToogleMenu = ()=> {
-        console.log(this.state)
+        
         this.setState({
             menu: !this.state.menu
         })
     }
 
+    menuClose = ()=> {
+        this.setState({
+            menu: false
+        })
+    }
 
-
-     styles = {
+    styles = {
         color: {
             "background-color": 'red'
         }
@@ -25,12 +30,16 @@ class Layout extends Component {
     render(){
         return(
             <div className={styles.Layout}>
-
+                <Drawer 
+                    isOpen={this.state.menu}
+                    onClose={this.menuClose}
+                />
                 <MenuToggle 
                     onToggle={this.ToogleMenu}
                     isOpen={this.state.menu}
-
                 />
+
+               
 
                 <main>
                     {this.props.children}

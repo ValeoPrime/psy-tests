@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './MenuToggle.css'
 
+
 const MenuToggle = (props) => {
     const cls = [
         styles.MenuToggle,

@@ -12,7 +12,7 @@ const ActiveQuestionnaire = (props) => {
                     {props.textQuestion}
                 </span>
 
-                <small>{props.QuestionNum} из {props.totalNumQuestions}</small>
+                <small className={classes.small}>{props.QuestionNum} из {props.totalNumQuestions}</small>
             </p>
 
             <AnswersList 
