@@ -104,7 +104,7 @@ class MainQuiz extends Component {
     onStart =(questionnaireTitle) => {
         let Title = null
         let questions = []
-        // console.log('элементы опроса',Questionare.questionnaireTitle)
+        
         Object.values(QuestionDB).map((Questionare, index)=>{
             if(questionnaireTitle === Questionare.questionnaireTitle){
                 Title = Questionare.questionnaireTitle
@@ -117,6 +117,14 @@ class MainQuiz extends Component {
             guestScreen: false,
             questionnaireTitle: Title,
             questions: questions
+        })
+    }
+
+    repeatHandler =() => {
+        this.setState({
+            guestScreen: true,
+            questionnaireTitle: null,
+            questions: []
         })
     }
 
@@ -138,6 +146,7 @@ class MainQuiz extends Component {
                             results={this.state.results}
                             questions={this.state.questions}
                             onRetry={this.retryHandler}
+                            onRepeat={this.repeatHandler}
                             />
                             : <ActiveQuestionnaire 
                             key={this.state.questions[this.state.activeQuestion].id}

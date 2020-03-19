@@ -39,7 +39,7 @@ const FinishedQuestionnaire = (props) => {
                 </Button>
 
                 <Button type="success"
-                onClick={props.onRetry}> Перейти к списку тестов
+                onClick={props.onRepeat}> Перейти к списку тестов
                 </Button>
             </div>
         </div>
