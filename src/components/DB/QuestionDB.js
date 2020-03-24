@@ -60,7 +60,7 @@ const QuestionDB = {
         ] 
         },
     other: {
-        questionnaireTitle: 'Вопрсы на общий кругозор',
+        questionnaireTitle: 'Вопросы на общий кругозор',
         questions: [
             {
                 question: 'Сколько пальцев на руке у опытного фрезировщика?',

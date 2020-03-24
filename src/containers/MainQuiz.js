@@ -7,15 +7,22 @@ import QuestionDB from '../components/DB/QuestionDB'
 
 
 class MainQuiz extends Component {
-    state = {
-        guestScreen: true,
-        results: {}, //{[id]: success error}
-        isFinished: false,
-        activeQuestion: 0,
-        answerState: null,// {[answerId: 'success' or 'error']}
-        questionnaireTitle: null,
-        questions: [
-            {
+    constructor(props){
+        super(props)
+        console.log('Просто пропсы',props)
+        this.props = props
+        console.log('Пропсы в конструкторе',this.props)
+        
+    }
+
+    state= {
+            results: {}, //{[id]: success error}
+            isFinished: false,
+            activeQuestion: 0,
+            answerState: null,// {[answerId: 'success' or 'error']}
+            // questionnaireTitle: GuestScreen.title,
+            key: null,
+            questions: [{
                 question: 'Какого цвета колбаса?',
                 rightAnswerId: 3,
                 id: 1,
@@ -25,20 +32,11 @@ class MainQuiz extends Component {
                   {text: 'Красный', id: 3},
                   {text: 'Зеленый', id: 4}
                 ]
-            },
-            {
-                question: 'Какого цвета небо?',
-                rightAnswerId: 2,
-                id: 2,
-                answers: [
-                  {text: 'Черный', id: 1},
-                  {text: 'Синий', id: 2},
-                  {text: 'Белый', id: 3},
-                  {text: 'Фиолетовый', id: 4}
-                ]
-            }
-        ]
-    }
+            }]
+        }
+        
+        
+    
 
     answerClick=(answerId)=>{
 
@@ -101,24 +99,7 @@ class MainQuiz extends Component {
         })
     }
 
-    onStart =(questionnaireTitle) => {
-        let Title = null
-        let questions = []
-        
-        Object.values(QuestionDB).map((Questionare, index)=>{
-            if(questionnaireTitle === Questionare.questionnaireTitle){
-                Title = Questionare.questionnaireTitle
-                questions = Questionare.questions
-            }
-            
-        })
-
-        this.setState({
-            guestScreen: false,
-            questionnaireTitle: Title,
-            questions: questions
-        })
-    }
+   
 
     repeatHandler =() => {
         this.setState({
@@ -128,16 +109,16 @@ class MainQuiz extends Component {
         })
     }
 
+    
+    
+
 
     render(){
+        
         return(
             <React.Fragment>
                 {
-                    this.state.guestScreen 
-                    ?  <GuestScreen 
-                        onStart={this.onStart}
-                    /> 
-                    : <div className={styles.MainQuiz}>
+                    <div className={styles.MainQuiz}>
                         <div className={styles.MainQuizWrapper}>
                             <h1>"{this.state.questionnaireTitle}"</h1>
                         {
@@ -158,8 +139,7 @@ class MainQuiz extends Component {
                             answerState={this.state.answerState}
                             />
                         }
-                        
-                    
+
                         </div>
                     </div>
                 }

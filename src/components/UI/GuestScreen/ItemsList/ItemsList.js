@@ -9,9 +9,10 @@ const ItemsList = (props) => {
         <ul className={styles.itemsList}>
             {
             Object.values(QuestionDB).map((Questionare, index)=>{
-                console.log('элементы опроса',Questionare.questionnaireTitle)
+                
                 return (
                     <ListItem
+                    id={index}
                     key={index}
                     title={Questionare.questionnaireTitle}
                     onClic= {props.onClic}
