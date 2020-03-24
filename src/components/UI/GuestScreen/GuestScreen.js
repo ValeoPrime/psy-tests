@@ -50,7 +50,7 @@ class GuestScreen extends Component {
                 </div>
                 :
                 <MainQuiz 
-                qT= {this.this.state.questionnaireTitle} //Так и не получается пробросить данные в маин
+                title= {this.this.state.questionnaireTitle} //Так и не получается пробросить данные в маин
                 qs= {this.this.state.questions}
                 />
             }

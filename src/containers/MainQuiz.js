@@ -12,15 +12,12 @@ class MainQuiz extends Component {
         console.log('Просто пропсы',props)
         this.props = props
         console.log('Пропсы в конструкторе',this.props)
-        
-    }
-
-    state= {
+        this.state= {
             results: {}, //{[id]: success error}
             isFinished: false,
             activeQuestion: 0,
             answerState: null,// {[answerId: 'success' or 'error']}
-            // questionnaireTitle: GuestScreen.title,
+            questionnaireTitle: this.props.title, //ВОТ СЮДА ДОЛЖНЫ ПОПАСТЬ ДАННЫЕ ИЗ ГОСТЕВОГО СКРИНА
             key: null,
             questions: [{
                 question: 'Какого цвета колбаса?',
@@ -34,6 +31,9 @@ class MainQuiz extends Component {
                 ]
             }]
         }
+    }
+
+    
         
         
     
