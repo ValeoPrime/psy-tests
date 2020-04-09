@@ -8,9 +8,9 @@ const QuestionDB = {
                 rightAnswerId: 3,
                 id: 1,
                 answers: [
-                  {text: 'Два', id: 1},
-                  {text: 'Пять', id: 2},
-                  {text: 'Семь', id: 3},
+                    { text: 'Два', id: 1 },
+                    { text: 'Пять', id: 2 },
+                    { text: 'Семь', id: 3 },
                 ]
             },
             {
@@ -18,10 +18,10 @@ const QuestionDB = {
                 rightAnswerId: 1,
                 id: 2,
                 answers: [
-                  {text: 'Ампер', id: 1},
-                  {text: 'Ватт', id: 2},
-                  {text: 'Вольт', id: 3},
-                  {text: 'Ом', id: 4}
+                    { text: 'Ампер', id: 1 },
+                    { text: 'Ватт', id: 2 },
+                    { text: 'Вольт', id: 3 },
+                    { text: 'Ом', id: 4 }
                 ]
             },
             {
@@ -29,10 +29,10 @@ const QuestionDB = {
                 rightAnswerId: 2,
                 id: 2,
                 answers: [
-                  {text: 'Нил', id: 1},
-                  {text: 'Амазонка', id: 2},
-                  {text: 'Яндзы', id: 3},
-                  {text: 'Я хз', id: 4}
+                    { text: 'Нил', id: 1 },
+                    { text: 'Амазонка', id: 2 },
+                    { text: 'Яндзы', id: 3 },
+                    { text: 'Я хз', id: 4 }
                 ]
             },
             {
@@ -40,10 +40,10 @@ const QuestionDB = {
                 rightAnswerId: 1,
                 id: 2,
                 answers: [
-                  {text: 'Хлорофила', id: 1},
-                  {text: 'Хропласта', id: 2},
-                  {text: 'Ультрафиолета', id: 3},
-                  {text: 'Не стабильного психического состояния', id: 4}
+                    { text: 'Хлорофила', id: 1 },
+                    { text: 'Хропласта', id: 2 },
+                    { text: 'Ультрафиолета', id: 3 },
+                    { text: 'Не стабильного психического состояния', id: 4 }
                 ]
             },
             {
@@ -51,14 +51,14 @@ const QuestionDB = {
                 rightAnswerId: 1,
                 id: 3,
                 answers: [
-                  {text: '42', id: 1},
-                  {text: '24', id: 2},
-                  {text: '46', id: 3},
-                  {text: 'у некоторых 18', id: 4}
+                    { text: '42', id: 1 },
+                    { text: '24', id: 2 },
+                    { text: '46', id: 3 },
+                    { text: 'у некоторых 18', id: 4 }
                 ]
             }
-        ] 
-        },
+        ]
+    },
     other: {
         questionnaireTitle: 'Вопросы на общий кругозор',
         questions: [
@@ -67,10 +67,10 @@ const QuestionDB = {
                 rightAnswerId: 3,
                 id: 2,
                 answers: [
-                    {text: 'Два', id: 1},
-                    {text: 'Пять', id: 2},
-                    {text: 'Зависит от стажа работы', id: 3},
-                    {text: 'Пвтрте впрс', id: 4}
+                    { text: 'Два', id: 1 },
+                    { text: 'Пять', id: 2 },
+                    { text: 'Зависит от стажа работы', id: 3 },
+                    { text: 'Пвтрте впрс', id: 4 }
                 ]
             },
             {
@@ -78,10 +78,10 @@ const QuestionDB = {
                 rightAnswerId: 4,
                 id: 2,
                 answers: [
-                    {text: 'Амундсен', id: 1},
-                    {text: 'Терешкова', id: 2},
-                    {text: 'Чингачгук "Большой змей"', id: 3},
-                    {text: 'Колумбино', id: 4}
+                    { text: 'Амундсен', id: 1 },
+                    { text: 'Терешкова', id: 2 },
+                    { text: 'Чингачгук "Большой змей"', id: 3 },
+                    { text: 'Колумбино', id: 4 }
                 ]
             },
             {
@@ -89,10 +89,10 @@ const QuestionDB = {
                 rightAnswerId: 3,
                 id: 2,
                 answers: [
-                    {text: '4', id: 1},
-                    {text: '6', id: 2},
-                    {text: '9', id: 3},
-                    {text: '11, но это не точно', id: 4}
+                    { text: '4', id: 1 },
+                    { text: '6', id: 2 },
+                    { text: '9', id: 3 },
+                    { text: '11, но это не точно', id: 4 }
                 ]
             },
             {
@@ -100,10 +100,10 @@ const QuestionDB = {
                 rightAnswerId: 2,
                 id: 2,
                 answers: [
-                    {text: 'Сердце', id: 1},
-                    {text: 'Желудок', id: 2},
-                    {text: 'Внутреннее ухо', id: 3},
-                    {text: 'Подколенная связка', id: 4}
+                    { text: 'Сердце', id: 1 },
+                    { text: 'Желудок', id: 2 },
+                    { text: 'Внутреннее ухо', id: 3 },
+                    { text: 'Подколенная связка', id: 4 }
                 ]
             },
             {
@@ -111,16 +111,16 @@ const QuestionDB = {
                 rightAnswerId: 1,
                 id: 2,
                 answers: [
-                    {text: 'Май', id: 1},
-                    {text: 'Сентябрь', id: 2},
-                    {text: 'Было лето', id: 3},
-                    {text: 'Октябрь', id: 4}
+                    { text: 'Май', id: 1 },
+                    { text: 'Сентябрь', id: 2 },
+                    { text: 'Было лето', id: 3 },
+                    { text: 'Октябрь', id: 4 }
                 ]
             }
-        ] 
-        }
+        ]
     }
+}
 
-    export default QuestionDB
-    
-   
+export default QuestionDB
+
+

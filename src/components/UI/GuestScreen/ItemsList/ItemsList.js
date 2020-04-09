@@ -15,7 +15,7 @@ const ItemsList = (props) => {
                     id={index}
                     key={index}
                     title={Questionare.questionnaireTitle}
-                    onClic= {props.onClic}
+                    onClick= {props.onClick}
                     
                     />
                 )
