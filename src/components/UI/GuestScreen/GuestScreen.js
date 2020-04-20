@@ -3,11 +3,13 @@ import styles from './GuestScreen.css'
 import ItemsList from './ItemsList/ItemsList'
 import MainQuiz from '../../../containers/MainQuiz'
 import QuestionDB from '../../DB/QuestionDB'
+import axios from 'axios'
 
 class GuestScreen extends Component {
     state = {
         guestScreen: true,
-        questionnaireTitle: 'Тестовый заголовок',
+        allQuestionnaireTitles: ['Тестовый заголовок', 'Тестовый заголовок 2'],
+        questionnaireTitle: '',
         questions: []
     }
 
@@ -36,7 +38,30 @@ class GuestScreen extends Component {
 
     }
 
+    async componentDidMount(){
 
+        try {
+            const response =  await axios.get('https://quiz-316f6.firebaseio.com/quizes.json')
+            
+            const allQuestionnaireTitles = []
+          
+            Object.keys(response.data).forEach(key => {
+                let t = {[key] : response.data[key][0].questionareTitle}
+                allQuestionnaireTitles.push(t)
+                
+            })
+            
+            this.setState({
+                allQuestionnaireTitles
+            })
+            console.log('РЕСПОНС', response)
+            console.log('Уходят заголовки',allQuestionnaireTitles)
+            
+        } catch (e){
+            console.log(e)
+        }
+        
+    }
 
     render() {
 
@@ -49,6 +74,7 @@ class GuestScreen extends Component {
                             <h1>В системе доступны следующие тесты :</h1>
                             <ItemsList
                                 onClick={this.onStart}
+                                allTitles={this.state.allQuestionnaireTitles}
                             />
                         </div>
                         :
@@ -56,7 +82,6 @@ class GuestScreen extends Component {
                             title={this.state.questionnaireTitle} //Так и не получается пробросить данные в маин
                             qs={this.state.questions}
                         />
-
                 }
             </React.Fragment>
         )

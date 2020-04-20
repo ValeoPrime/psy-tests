@@ -9,9 +9,9 @@ import QuestionDB from '../components/DB/QuestionDB'
 class MainQuiz extends Component {
     constructor(props) {
         super(props)
-        console.log('Просто пропсы', props)
+        
         this.props = props
-        console.log('Пропсы в конструкторе', this.props)
+        
         this.state = {
             results: {}, //{[id]: success error}
             isFinished: false,

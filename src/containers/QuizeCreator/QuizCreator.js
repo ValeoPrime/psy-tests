@@ -4,7 +4,8 @@ import Select from '../../components/UI/Select/Select'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/button/button'
 import { createControl, validate, validateForm } from './../../FormFrames/formFrameworks';
-import AnswersList from './../../components/ActiveQuestionnaire/AnswersList/AnswersList';
+import QuestionareTitle from './QuestionareTitle/QuestionareTitle'
+import axios from 'axios'
 
 function createFormControls() {
     return {
@@ -43,6 +44,8 @@ export default class QuizCreator extends Component {
 
     state = {
         quiz: [],
+        questionareTitleSelected: false,
+        questionareTitle: '',
         isFormValid: false,
         rightAnswerId: 1,
         formControls: createFormControls()
@@ -59,6 +62,7 @@ export default class QuizCreator extends Component {
         const index = quiz.length + 1
 
         const questionItem = {
+            questionareTitle: this.state.questionareTitle,
             question: this.state.formControls.question.value,
             id: index,
             rightAnswerId: this.state.rightAnswerId,
@@ -89,8 +93,28 @@ export default class QuizCreator extends Component {
         
     }
 
-    createQuizHandler = (event) => {
+    createQuizHandler = async event => {
         event.preventDefault()
+
+        try{
+            const response = await axios.post('https://quiz-316f6.firebaseio.com/quizes.json', this.state.quiz)
+
+            console.log(response)
+            this.setState({
+                quiz: [],
+                isFormValid: false,
+                rightAnswerId: 1,
+                formControls: createFormControls(),
+                questionareTitleSelected: false
+            })
+        } catch (e){
+            console.log(e)
+        }
+
+
+        // axios.post('https://quiz-316f6.firebaseio.com/quizes.json', this.state.quiz)
+        // .then(response=>console.log(response))
+        // .catch(error=>console.log(error))
     }
 
     changeHandler = (value, controlName) => {
@@ -143,6 +167,25 @@ export default class QuizCreator extends Component {
         })
     }
 
+
+    questionareTitle = (event) => {
+        event.preventDefault()
+        if(this.state.questionareTitle.trim().length > 5){
+            this.setState({
+                questionareTitleSelected: true
+            })
+        }
+       
+    }
+
+    QuestionareTitleChange = (event) => {
+        let inputValue = event.target.value
+        
+        this.setState({
+            questionareTitle: inputValue
+        })
+    }
+
     render() {
         console.log('массив вопросов',this.state.quiz)
         const select = <Select
@@ -159,33 +202,45 @@ export default class QuizCreator extends Component {
         />
         return (
             <div className={styles.QuizCreator}>
-                <div>
-                    <h1>Создание теста</h1>
+                
+                {
+                    this.state.questionareTitleSelected === false ?
+                    <QuestionareTitle 
+                    QuestionareTitle={this.questionareTitle}
+                    QuestionareTitleChange = {this.QuestionareTitleChange}
+                    errorMessage={
+                        this.state.questionareTitle.trim().length > 5 
+                        ? null 
+                        : 'Заголовок не должен быть пустым или короче 5 сиволов'}
+                    />
+                    :<div>
+                        <h1>Создание теста</h1>
 
-                    <form onSubmit={this.submitHandler}>
+                        <form onSubmit={this.submitHandler}>
 
-                        {this.renderInputs()}
+                            {this.renderInputs()}
 
-                        {select}
+                            {select}
 
-                        <Button
-                            type="primary"
-                            onClick={this.addQuestionHandler}
-                            disabled={!this.state.isFormValid}
-                        >
-                            Добавить вопрос
-                        </Button>
+                            <Button
+                                type="primary"
+                                onClick={this.addQuestionHandler}
+                                disabled={!this.state.isFormValid}
+                            >
+                                Добавить вопрос
+                            </Button>
 
-                        <Button
-                            type="success"
-                            onClick={this.createQuizHandler}
-                            disabled={this.state.quiz.length === 0}
-                        >
-                            Создать тест
-                        </Button>
+                            <Button
+                                type="success"
+                                onClick={this.createQuizHandler}
+                                disabled={this.state.quiz.length === 0}
+                            >
+                                Создать тест
+                            </Button>
 
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                }
             </div>
         )
     }

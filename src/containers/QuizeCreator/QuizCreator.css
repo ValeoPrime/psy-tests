@@ -12,6 +12,12 @@
     max-width: 600px;
     padding: 0 20px;
 }
+.QuizCreator > form {
+    align-items: baseline;
+    border: 2px solid blue;
+    max-width: 600px;
+    max-height: 250px;
+}
 
 .QuizCreator h1 {
     text-align: center;

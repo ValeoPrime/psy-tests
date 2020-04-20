@@ -1,25 +1,25 @@
 import React from 'react'
 import styles from './itemsList.css'
-import QuestionDB from '../../../DB/QuestionDB'
 import ListItem from './ListItem/ListItem'
 
 
+
 const ItemsList = (props) => {
+    console.log('Пришли заголовки',props.allTitles)
     return (
         <ul className={styles.itemsList}>
             {
-            Object.values(QuestionDB).map((Questionare, index)=>{
-                
-                return (
-                    <ListItem
-                    id={index}
-                    key={index}
-                    title={Questionare.questionnaireTitle}
-                    onClick= {props.onClick}
-                    
-                    />
-                )
-            })}
+                props.allTitles.map((title, index) => {
+
+                    return (
+                        <ListItem
+                            id={index}
+                            key={index}
+                            title={title}
+                            onClick={props.onClick}
+                        />
+                    )
+                })}
         </ul>
     )
 }
