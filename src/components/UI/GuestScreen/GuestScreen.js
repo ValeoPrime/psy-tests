@@ -2,65 +2,72 @@ import React, { Component } from 'react'
 import styles from './GuestScreen.css'
 import ItemsList from './ItemsList/ItemsList'
 import MainQuiz from '../../../containers/MainQuiz'
-import QuestionDB from '../../DB/QuestionDB'
+// import QuestionDB from '../../DB/QuestionDB'
 import axios from 'axios'
 
 class GuestScreen extends Component {
     state = {
         guestScreen: true,
         allQuestionnaireTitles: ['Тестовый заголовок', 'Тестовый заголовок 2'],
-        questionnaireTitle: '',
-        questions: []
+        testId: ''
     }
 
 
-    onStart = (questionnaireTitle) => {
-        let Title = null
-        let questions = []
+    onStart = async (testId) => {
 
 
-        Object.values(QuestionDB).forEach(((Questionare) => {
-            if (questionnaireTitle === Questionare.questionnaireTitle) {
+        // try {
+        //     const response = await axios.get(`https://quiz-316f6.firebaseio.com/quizes/${testId}.json`)
+        //     console.log('ОТВЕТ ОТ СЕРВЕРА ', response)
+        //     response.data.map(item => {
+        //         // Title = item.questionareTitle
+        //         // questions.push(item.questions)
+        //     })
 
-                Title = Questionare.questionnaireTitle
-                questions = Questionare.questions
-            }
-            
-        }))
-        
-       
+        // } catch (e) {
+        //     console.log(e)
+        // }
+
+
+
+        // Object.values(QuestionDB).forEach(((Questionare) => {
+        //     if (questionnaireTitle === Questionare.questionnaireTitle) {
+
+        //         Title = Questionare.questionnaireTitle
+        //         questions = Questionare.questions
+        //     }
+
+        // }))
 
         this.setState({
             guestScreen: false,
-            questionnaireTitle: Title,
-            questions: questions
+            testId: testId
         })
 
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
 
         try {
-            const response =  await axios.get('https://quiz-316f6.firebaseio.com/quizes.json')
-            
+            const response = await axios.get('https://quiz-316f6.firebaseio.com/quizes.json')
+
             const allQuestionnaireTitles = []
-          
+
             Object.keys(response.data).forEach(key => {
-                let t = {[key] : response.data[key][0].questionareTitle}
+                let t = [key, response.data[key][0].questionareTitle]
+                // {[key] : response.data[key][0].questionareTitle}
                 allQuestionnaireTitles.push(t)
-                
+
             })
-            
+
             this.setState({
                 allQuestionnaireTitles
             })
-            console.log('РЕСПОНС', response)
-            console.log('Уходят заголовки',allQuestionnaireTitles)
-            
-        } catch (e){
+
+        } catch (e) {
             console.log(e)
         }
-        
+
     }
 
     render() {
@@ -79,8 +86,7 @@ class GuestScreen extends Component {
                         </div>
                         :
                         <MainQuiz
-                            title={this.state.questionnaireTitle} //Так и не получается пробросить данные в маин
-                            qs={this.state.questions}
+                            testId={this.state.testId} //Так и не получается пробросить данные в маин
                         />
                 }
             </React.Fragment>

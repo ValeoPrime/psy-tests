@@ -2,38 +2,53 @@ import React, { Component } from 'react'
 import styles from './MainQuiz.css';
 import ActiveQuestionnaire from '../components/ActiveQuestionnaire/ActiveQuestionnaire'
 import FinishedQuestionnaire from '../components/finishedQuestionnaire/FinishedQuestionnaire'
+import Loader from '../components/UI/Loader/Loader'
+import axios from 'axios'
 // import GuestScreen from '../components/UI/GuestScreen/GuestScreen'
-import QuestionDB from '../components/DB/QuestionDB'
+// import QuestionDB from '../components/DB/QuestionDB'
 
 
 class MainQuiz extends Component {
     constructor(props) {
         super(props)
-        
-        this.props = props
-        
+
         this.state = {
             results: {}, //{[id]: success error}
+            testId: props.location.pathname.split('/')[2],
             isFinished: false,
+            questionsLoad: false,
             activeQuestion: 0,
             answerState: null,// {[answerId: 'success' or 'error']}
-            questionnaireTitle: QuestionDB.school.questionnaireTitle || this.props.title || 'Тестовый заголовок', //ВОТ СЮДА ДОЛЖНЫ ПОПАСТЬ ДАННЫЕ ИЗ ГОСТЕВОГО СКРИНА
+            questionnaireTitle: '',
             key: null,
-            questions: QuestionDB.school.questions || [{
-                question: 'Какого цвета колбаса?',
-                rightAnswerId: 3,
-                id: 1,
-                answers: [
-                    { text: 'Черный', id: 1 },
-                    { text: 'Синий', id: 2 },
-                    { text: 'Красный', id: 3 },
-                    { text: 'Зеленый', id: 4 }
-                ]
-            }]
+            questions: []
         }
+
+
     }
 
+    async componentDidMount() {
+        let Title = null
+        let questions = []
+        try {
+            const response = await axios.get(`https://quiz-316f6.firebaseio.com/quizes/${this.state.testId}.json`)
+            console.log('ОТВЕТ ОТ СЕРВЕРА ', response)
+            response.data.map(item => {
+                Title = item.questionareTitle
+                questions.push(item)
+            })
 
+        } catch (e) {
+            console.log(e)
+        }
+        console.log('массив вопросов', questions)
+
+        this.setState({
+            questionsLoad: true,
+            questionnaireTitle: Title,
+            questions: questions
+        })
+    }
 
 
 
@@ -50,6 +65,7 @@ class MainQuiz extends Component {
 
         const question = this.state.questions[this.state.activeQuestion]
         const results = this.state.results
+
 
         if (question.rightAnswerId === answerId) {
             if (!results[question.id]) {
@@ -91,6 +107,7 @@ class MainQuiz extends Component {
     }
 
     retryHandler = () => {
+
         this.setState({
             results: {}, //{[id]: success error}
             isFinished: false,
@@ -99,17 +116,13 @@ class MainQuiz extends Component {
         })
     }
 
-
-
-    repeatHandler = () => {
+    repeatHandler = () => {  //  ТУТ ДОЛЖЕН БЫТЬ ПЕРЕБРОС НА ГОСТЕВОЙ СКРИН
         this.setState({
             guestScreen: true,
             questionnaireTitle: null,
             questions: []
         })
     }
-
-
 
 
 
@@ -122,22 +135,24 @@ class MainQuiz extends Component {
                         <div className={styles.MainQuizWrapper}>
                             <h1>"{this.state.questionnaireTitle}"</h1>
                             {
-                                this.state.isFinished
-                                    ? <FinishedQuestionnaire
-                                        results={this.state.results}
-                                        questions={this.state.questions}
-                                        onRetry={this.retryHandler}
-                                        onRepeat={this.repeatHandler}
-                                    />
-                                    : <ActiveQuestionnaire
-                                        key={this.state.questions[this.state.activeQuestion].id}
-                                        answers={this.state.questions[this.state.activeQuestion].answers}
-                                        textQuestion={this.state.questions[this.state.activeQuestion].question}
-                                        answerClick={this.answerClick}
-                                        totalNumQuestions={this.state.questions.length}
-                                        QuestionNum={this.state.activeQuestion + 1}
-                                        answerState={this.state.answerState}
-                                    />
+                                !this.state.questionsLoad
+                                    ? <Loader />
+                                    : this.state.isFinished
+                                        ? <FinishedQuestionnaire
+                                            results={this.state.results}
+                                            questions={this.state.questions}
+                                            onRetry={this.retryHandler}
+                                            onRepeat={this.repeatHandler}
+                                        />
+                                        : <ActiveQuestionnaire
+                                            key={this.state.questions[this.state.activeQuestion].id}
+                                            answers={this.state.questions[this.state.activeQuestion].answers}
+                                            textQuestion={this.state.questions[this.state.activeQuestion].question}
+                                            answerClick={this.answerClick}
+                                            totalNumQuestions={this.state.questions.length}
+                                            QuestionNum={this.state.activeQuestion + 1}
+                                            answerState={this.state.answerState}
+                                        />
                             }
 
                         </div>

@@ -6,7 +6,7 @@ import styles from './ListItem.css'
 const ListItem = (props) => {
     return (
         <li className={styles.ListItem}
-            onClick={() => props.onClick(props.title)}
+            onClick={() => props.onClick(props.id)} // передавать айди
         >
             <NavLink to={'/quiz/' + props.id}>
                 {props.title}

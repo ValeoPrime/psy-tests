@@ -5,17 +5,15 @@ import ListItem from './ListItem/ListItem'
 
 
 const ItemsList = (props) => {
-    console.log('Пришли заголовки',props.allTitles)
     return (
         <ul className={styles.itemsList}>
             {
                 props.allTitles.map((title, index) => {
-
                     return (
                         <ListItem
-                            id={index}
+                            id={title[0]}
                             key={index}
-                            title={title}
+                            title={title[1]}
                             onClick={props.onClick}
                         />
                     )
