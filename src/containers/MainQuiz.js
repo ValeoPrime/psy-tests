@@ -4,8 +4,7 @@ import ActiveQuestionnaire from '../components/ActiveQuestionnaire/ActiveQuestio
 import FinishedQuestionnaire from '../components/finishedQuestionnaire/FinishedQuestionnaire'
 import Loader from '../components/UI/Loader/Loader'
 import axios from 'axios'
-// import GuestScreen from '../components/UI/GuestScreen/GuestScreen'
-// import QuestionDB from '../components/DB/QuestionDB'
+
 
 
 class MainQuiz extends Component {
@@ -33,7 +32,7 @@ class MainQuiz extends Component {
         try {
             const response = await axios.get(`https://quiz-316f6.firebaseio.com/quizes/${this.state.testId}.json`)
             console.log('ОТВЕТ ОТ СЕРВЕРА ', response)
-            response.data.map(item => {
+            response.data.forEach(item => {
                 Title = item.questionareTitle
                 questions.push(item)
             })
@@ -41,7 +40,7 @@ class MainQuiz extends Component {
         } catch (e) {
             console.log(e)
         }
-        console.log('массив вопросов', questions)
+        
 
         this.setState({
             questionsLoad: true,
@@ -116,7 +115,7 @@ class MainQuiz extends Component {
         })
     }
 
-    repeatHandler = () => {  //  ТУТ ДОЛЖЕН БЫТЬ ПЕРЕБРОС НА ГОСТЕВОЙ СКРИН
+    repeatHandler = () => {  
         this.setState({
             guestScreen: true,
             questionnaireTitle: null,
@@ -145,14 +144,14 @@ class MainQuiz extends Component {
                                             onRepeat={this.repeatHandler}
                                         />
                                         : <ActiveQuestionnaire
-                                            key={this.state.questions[this.state.activeQuestion].id}
-                                            answers={this.state.questions[this.state.activeQuestion].answers}
-                                            textQuestion={this.state.questions[this.state.activeQuestion].question}
-                                            answerClick={this.answerClick}
-                                            totalNumQuestions={this.state.questions.length}
-                                            QuestionNum={this.state.activeQuestion + 1}
-                                            answerState={this.state.answerState}
-                                        />
+                                    key={this.state.questions[this.state.activeQuestion].id}
+                                    answers={this.state.questions[this.state.activeQuestion].answers}
+                                    textQuestion={this.state.questions[this.state.activeQuestion].question}
+                                    answerClick={this.answerClick}
+                                    totalNumQuestions={this.state.questions.length}
+                                    QuestionNum={this.state.activeQuestion + 1}
+                                    answerState={this.state.answerState}
+                                />
                             }
 
                         </div>
