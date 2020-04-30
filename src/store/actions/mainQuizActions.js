@@ -1,55 +1,7 @@
 import axios from 'axios'
-import { FETCH_QUESTIONARE_TITLES, FETCH_QUESTIONARE_TITLES_ERROR, FETCH_TEST_ID,
-    FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS,
-    RETRY_HANDLER, ANSWER, 
-    IS_QUESTIONNAIRE_FINISHED, 
-    NEXT_QUESTION,
-    REPEAT_HANDLER } from './actionTypes'
+import {FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS, FETCH_QUESTIONARE_TITLES_ERROR, RETRY_HANDLER, REPEAT_HANDLER, ANSWER, IS_QUESTIONNAIRE_FINISHED, NEXT_QUESTION} from './actionTypes'
 
-export function fetchAllTestsTitles() {
-    return async dispatch => {
-        try {
-            const response = await axios.get('https://quiz-316f6.firebaseio.com/quizes.json')
-
-            const allQuestionnaireTitles = []
-
-            Object.keys(response.data).forEach(key => {
-                let t = [key, response.data[key][0].questionareTitle]
-                allQuestionnaireTitles.push(t)
-
-            })
-
-            dispatch(fetchAllQuestionnaireTitles(allQuestionnaireTitles))
-
-        } catch (e) {
-            dispatch(fetchAllQuestionnaireTitlesError(e))
-        }
-    }
-
-}
-
-export function testID(testId) {
-    return {
-        type: FETCH_TEST_ID,
-        testId: testId
-    }
-}
-
-export function fetchAllQuestionnaireTitles(allQuestionnaireTitles) {
-    return {
-        type: FETCH_QUESTIONARE_TITLES,
-        allQuestionnaireTitles
-    }
-}
-
-export function fetchAllQuestionnaireTitlesError(e) {
-    return {
-        type: FETCH_QUESTIONARE_TITLES_ERROR,
-        error: e
-    }
-}
-
-export function fetchActiveTest(testId){
+export function fetchActiveTest(){
     return async dispatch => {
         let Title = null
         let questions = []
@@ -70,14 +22,14 @@ export function fetchActiveTest(testId){
 
 export function answerClick(answerId){
     
-    if (this.answerState) {
-        const key = Object.keys(this.answerState)[0]
-        if (this.answerState[key] === 'success') {
+    if (answerState) {
+        const key = Object.keys(answerState)[0]
+        if (answerState[key] === 'success') {
             return
         }
     }
 
-    const question = this.questions[this.activeQuestion]
+    const question = questions[activeQuestion]
     const results = results
 
 
@@ -86,7 +38,7 @@ export function answerClick(answerId){
             results[question.id] = 'success'
         }
 
-    dispatch(Answer({ [answerId]: 'success' }, results))
+        dispatch(Answer({ [answerId]: 'success' }, results))
 
         const timeout = setTimeout(() => {
             if (isQuestionnaireFinished()) {
@@ -113,7 +65,7 @@ export function Answer(answerState, results){
 
 
 export function isQuestionnaireFinished(){
-    return this.activeQuestion + 1 === this.questions.length ? true : false
+    return activeQuestion + 1 === questions.length ? true : false
 }
 
 export function QuestionnaireFinished(){
