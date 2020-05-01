@@ -1,10 +1,12 @@
 import axios from 'axios'
-import { FETCH_QUESTIONARE_TITLES, FETCH_QUESTIONARE_TITLES_ERROR, FETCH_TEST_ID,
+import {
+    FETCH_QUESTIONARE_TITLES, FETCH_QUESTIONARE_TITLES_ERROR, FETCH_TEST_ID,
     FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS,
-    RETRY_HANDLER, ANSWER, 
-    IS_QUESTIONNAIRE_FINISHED, 
+    RETRY_HANDLER, ANSWER,
+    IS_QUESTIONNAIRE_FINISHED,
     NEXT_QUESTION,
-    REPEAT_HANDLER } from './actionTypes'
+    REPEAT_HANDLER
+} from './actionTypes'
 
 export function fetchAllTestsTitles() {
     return async dispatch => {
@@ -29,6 +31,7 @@ export function fetchAllTestsTitles() {
 }
 
 export function testID(testId) {
+    console.log('УПАЛО В ФУНКЦИЮ АЙДИ', testId)
     return {
         type: FETCH_TEST_ID,
         testId: testId
@@ -49,7 +52,7 @@ export function fetchAllQuestionnaireTitlesError(e) {
     }
 }
 
-export function fetchActiveTest(testId){
+export function fetchActiveTest(testId) {
     return async dispatch => {
         let Title = null
         let questions = []
@@ -61,14 +64,14 @@ export function fetchActiveTest(testId){
                 questions.push(item)
             })
 
-            dispatch(fetchActiveTestTitleQuestions(Title,questions))
+            dispatch(fetchActiveTestTitleQuestions(Title, questions))
         } catch (e) {
             dispatch(fetchActiveTestTitleQuestionsError(e))
         }
     }
 }
 
-export function answerClick(answerId){
+export function answerClick(answerId) {
     return async dispatch => {
         if (this.answerState) {
             const key = Object.keys(this.answerState)[0]
@@ -86,13 +89,13 @@ export function answerClick(answerId){
                 result[question.id] = 'success'
             }
 
-        dispatch(Answer({ [answerId]: 'success' }, result))
+            dispatch(Answer({ [answerId]: 'success' }, result))
 
             const timeout = setTimeout(() => {
                 if (isQuestionnaireFinished()) {
-                    dispatch (QuestionnaireFinished())
+                    dispatch(QuestionnaireFinished())
                 } else {
-                    dispatch (nextQuestion())
+                    dispatch(nextQuestion())
                 }
                 window.clearTimeout(timeout)
             }, 1000)
@@ -104,7 +107,7 @@ export function answerClick(answerId){
     }
 }
 
-export function Answer(answerState, result){
+export function Answer(answerState, result) {
     return {
         type: ANSWER,
         answerState: answerState,
@@ -113,25 +116,25 @@ export function Answer(answerState, result){
 }
 
 
-export function isQuestionnaireFinished(){
+export function isQuestionnaireFinished() {
     return this.activeQuestion + 1 === this.questions.length ? true : false
 }
 
-export function QuestionnaireFinished(){
+export function QuestionnaireFinished() {
     return {
         type: IS_QUESTIONNAIRE_FINISHED,
         isFinished: true
     }
 }
 
-export function nextQuestion(){
+export function nextQuestion() {
     return {
         type: NEXT_QUESTION,
     }
 }
 
 
-export function fetchActiveTestTitleQuestions(title,questions) {
+export function fetchActiveTestTitleQuestions(title, questions) {
     return {
         type: FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS,
         questionnaireTitle: title,
@@ -146,13 +149,13 @@ export function fetchActiveTestTitleQuestionsError(e) {
     }
 }
 
-export function retryHandler () {
+export function retryHandler() {
     return {
         type: RETRY_HANDLER
     }
 }
 
-export function repeatHandler(){
+export function repeatHandler() {
     return {
         type: REPEAT_HANDLER
     }

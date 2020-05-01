@@ -12,6 +12,7 @@ class GuestScreen extends Component {
     }
 
     render() {
+        console.log('ОТДАЕМ АЙДИ В МЕЙН', this.props)
         return (
             <React.Fragment>
                 {
@@ -26,7 +27,7 @@ class GuestScreen extends Component {
                         </div>
                         :
                         <MainQuiz
-                            testId={this.props.testId}
+                            TESTId={this.props.testId}
                         />
                 }
             </React.Fragment>
@@ -35,6 +36,7 @@ class GuestScreen extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log('СТЕЙТ ГОСТЕВОГО', state)
     return {
         guestScreen: state.allTests.guestScreen,
         allQuestionnaireTitles: state.allTests.allQuestionnaireTitles,

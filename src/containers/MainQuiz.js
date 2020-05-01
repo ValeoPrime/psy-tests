@@ -10,10 +10,10 @@ import { fetchActiveTest, retryHandler, repeatHandler, answerClick } from '../st
 
 class MainQuiz extends Component {
     componentDidMount() {
-        console.log('ПРОПСЫ МЕЙНА', this.props.location.pathname.split('/')[2])
-        this.props.fetchActiveTest(this.props.testId)
+        console.log('ПРОПСЫ МЕЙНА', this.props)
+        this.props.fetchActiveTest(this.props.location.pathname.split('/')[2])
     }
-
+    //this.props.location.pathname.split('/')[2]
     render() {
         return (
             <React.Fragment>
@@ -52,7 +52,7 @@ class MainQuiz extends Component {
 function mapStateToProps(state) {
     return {
         results: state.allTests.results, //{[id]: success error}
-        testId: state.allTests.testId, // ccccccccccccccc
+        // testId: state.allTests.testId, // ccccccccccccccc
         isFinished: state.allTests.isFinished,
         questionsLoad: state.allTests.questionsLoad,
         activeQuestion: state.allTests.activeQuestion,
