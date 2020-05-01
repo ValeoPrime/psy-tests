@@ -2,7 +2,7 @@ import {
     FETCH_QUESTIONARE_TITLES, FETCH_QUESTIONARE_TITLES_ERROR,
     FETCH_TEST_ID,
     FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS,
-    RETRY_HANDLER, 
+    RETRY_HANDLER,
     ANSWER,
     IS_QUESTIONNAIRE_FINISHED,
     NEXT_QUESTION,
@@ -13,7 +13,7 @@ const intialState = {
     guestScreen: true,
     allQuestionnaireTitles: ['Тестовый заголовок', 'Тестовый заголовок 2'],
     results: {}, //{[id]: success error}
-    testId: '-M4nKv01JF8RNGJJL3bc', //||   props.location.pathname.split('/')[2],
+    testId: '', //||   props.location.pathname.split('/')[2],
     isFinished: false,
     questionsLoad: false,
     activeQuestion: 0,
@@ -87,10 +87,6 @@ export default function guestScreenReducer(state = intialState, action) {
                 ...state,
                 guestScreen: false,
                 testId: action.testId
-            }
-        case FETCH_QUESTIONARE_TITLES_ERROR:
-            return {
-                ...state
             }
         default:
             return state

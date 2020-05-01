@@ -69,45 +69,46 @@ export function fetchActiveTest(testId){
 }
 
 export function answerClick(answerId){
-    
-    if (this.answerState) {
-        const key = Object.keys(this.answerState)[0]
-        if (this.answerState[key] === 'success') {
-            return
-        }
-    }
-
-    const question = this.questions[this.activeQuestion]
-    const results = results
-
-
-    if (question.rightAnswerId === answerId) {
-        if (!results[question.id]) {
-            results[question.id] = 'success'
-        }
-
-    dispatch(Answer({ [answerId]: 'success' }, results))
-
-        const timeout = setTimeout(() => {
-            if (isQuestionnaireFinished()) {
-                dispatch (QuestionnaireFinished())
-            } else {
-                dispatch (nextQuestion())
+    return async dispatch => {
+        if (this.answerState) {
+            const key = Object.keys(this.answerState)[0]
+            if (this.answerState[key] === 'success') {
+                return
             }
-            window.clearTimeout(timeout)
-        }, 1000)
+        }
 
-    } else {
-        results[question.id] = 'error'
-        dispatch(Answer({ [answerId]: 'error' }, results))
+        const question = this.questions[this.activeQuestion]
+        const result = this.results
+
+
+        if (question.rightAnswerId === answerId) {
+            if (!result[question.id]) {
+                result[question.id] = 'success'
+            }
+
+        dispatch(Answer({ [answerId]: 'success' }, result))
+
+            const timeout = setTimeout(() => {
+                if (isQuestionnaireFinished()) {
+                    dispatch (QuestionnaireFinished())
+                } else {
+                    dispatch (nextQuestion())
+                }
+                window.clearTimeout(timeout)
+            }, 1000)
+
+        } else {
+            result[question.id] = 'error'
+            dispatch(Answer({ [answerId]: 'error' }, result))
+        }
     }
 }
 
-export function Answer(answerState, results){
+export function Answer(answerState, result){
     return {
         type: ANSWER,
         answerState: answerState,
-        results: results
+        results: result
     }
 }
 

@@ -45,7 +45,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         fetchAllTestsTitles: () => dispatch(fetchAllTestsTitles()),
-        testID: () => testID()
+        testID: (testId) => testID(testId)
     }
 }
 

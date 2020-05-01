@@ -4,9 +4,10 @@ import styles from './ListItem.css'
 
 
 const ListItem = (props) => {
+    // console.log('ПРОПСЫ ЛИСТ АЙТЕМА', props.id)
     return (
         <li className={styles.ListItem}
-            onClick={() => {props.onClick(props.id)}} // передавать айди
+            onClick={() => { props.onClick(props.id) }} // передавать айди
         >
             <NavLink to={'/quiz/' + props.id}>
                 {props.title}
