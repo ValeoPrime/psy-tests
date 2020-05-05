@@ -6,7 +6,9 @@ import {
     ANSWER,
     IS_QUESTIONNAIRE_FINISHED,
     NEXT_QUESTION,
-    REPEAT_HANDLER
+    REPEAT_HANDLER,
+    QUESTION,
+    CREATE_QUIZ
 } from '../actions/actionTypes'
 
 const intialState = {
@@ -20,11 +22,13 @@ const intialState = {
     answerState: [],// {[answerId: 'success' or 'error']}
     questionnaireTitle: '',
     key: null,
-    questions: []
+    questions: [],
+    quiz: []
 }
 
 
 export default function guestScreenReducer(state = intialState, action) {
+    // console.log('ГОСТЕВОЙ СТЕЙТ', state)
     switch (action.type) {
         case FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS: {
             return {
@@ -55,11 +59,6 @@ export default function guestScreenReducer(state = intialState, action) {
                 answerState: []
             }
         }
-        case FETCH_QUESTIONARE_TITLES_ERROR: {
-            return {
-                ...state
-            }
-        }
         case RETRY_HANDLER: {
             return {
                 ...state,
@@ -88,6 +87,22 @@ export default function guestScreenReducer(state = intialState, action) {
                 guestScreen: false,
                 testId: action.testId
             }
+        case QUESTION:
+            console.log('СРАБОТАЛ КЕЙС ДОБАВЛЕНИЯ ВОПРОСА, СТЕЙТ', state)
+            // const cloneQuiz = state.state.quiz.slice()
+            // cloneQuiz.push(action.item)
+            // console.log('Вопрос равен', cloneQuiz)
+            return {
+                ...state,
+                quiz: [...state.quiz, action.item]
+            }
+        case CREATE_QUIZ:
+            console.log('СРАБОТАЛ КЛЕАР КЕЙС')
+            return {
+                ...state,
+                quiz: []
+            }
+        case FETCH_QUESTIONARE_TITLES_ERROR:
         default:
             return state
     }

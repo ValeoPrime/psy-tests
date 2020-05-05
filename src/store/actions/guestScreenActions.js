@@ -20,7 +20,7 @@ export function fetchAllTestsTitles() {
                 allQuestionnaireTitles.push(t)
 
             })
-
+            console.log('ВСЕ ЗАГОЛОВКИ ОПРОСОВ', allQuestionnaireTitles)
             dispatch(fetchAllQuestionnaireTitles(allQuestionnaireTitles))
 
         } catch (e) {

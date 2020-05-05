@@ -36,7 +36,7 @@ class GuestScreen extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('СТЕЙТ ГОСТЕВОГО', state)
+    // console.log('СТЕЙТ ГОСТЕВОГО', state)
     return {
         guestScreen: state.allTests.guestScreen,
         allQuestionnaireTitles: state.allTests.allQuestionnaireTitles,
@@ -47,7 +47,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         fetchAllTestsTitles: () => dispatch(fetchAllTestsTitles()),
-        testID: (testId) => testID(testId)
+        testID: (testId) => dispatch(testID(testId))
     }
 }
 

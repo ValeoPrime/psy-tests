@@ -9,3 +9,5 @@ export const ANSWER = 'ANSWER'
 
 export const IS_QUESTIONNAIRE_FINISHED = 'IS_QUESTIONNAIRE_FINISHED'
 export const NEXT_QUESTION = 'NEXT_QUESTION'
+export const QUESTION = 'QUESTION'
+export const CREATE_QUIZ  = 'CREATE_QUIZ'
