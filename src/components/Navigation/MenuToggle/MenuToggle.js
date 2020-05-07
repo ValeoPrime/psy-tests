@@ -6,7 +6,6 @@ const MenuToggle = (props) => {
     const cls = [
         styles.MenuToggle,
         'fa'
-
     ]
 
     if(props.isOpen){

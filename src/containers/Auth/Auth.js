@@ -4,7 +4,7 @@ import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/button/button'
 // import axios from 'axios'
 import { connect } from 'react-redux'
-import {auth} from '../../store/actions/authActions'
+import { auth } from '../../store/actions/authActions'
 
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -173,18 +173,18 @@ class Auth extends Component {
 
 }
 
-// function mapStateToProps(state) {
-//     console.log('Стейт аутентификации' ,state)
-//     return {
+function mapStateToProps(state) {
+    console.log('Стейт аутентификации', state)
+    return {
 
-//     }  
-// }
+    }
+}
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return {
         auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
     }
 }
 
-export default connect(null,mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)
 

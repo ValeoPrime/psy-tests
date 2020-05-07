@@ -1,11 +1,16 @@
 import axios from 'axios'
-import {
-    FETCH_QUESTIONARE_TITLES, FETCH_QUESTIONARE_TITLES_ERROR, FETCH_TEST_ID,
+
+import {    FETCH_QUESTIONARE_TITLES, 
+    FETCH_QUESTIONARE_TITLES_ERROR, 
+    FETCH_TEST_ID,
     FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS,
-    RETRY_HANDLER, ANSWER,
+    RETRY_HANDLER, 
+    ANSWER,
     IS_QUESTIONNAIRE_FINISHED,
     NEXT_QUESTION,
-    REPEAT_HANDLER
+    REPEAT_HANDLER,
+    GUEST_SCREEN_OFF,
+    QUIZ_SET_STATE
 } from './actionTypes'
 
 export function fetchAllTestsTitles() {
@@ -20,7 +25,7 @@ export function fetchAllTestsTitles() {
                 allQuestionnaireTitles.push(t)
 
             })
-            console.log('ВСЕ ЗАГОЛОВКИ ОПРОСОВ', allQuestionnaireTitles)
+            // console.log('ВСЕ ЗАГОЛОВКИ ОПРОСОВ', allQuestionnaireTitles)
             dispatch(fetchAllQuestionnaireTitles(allQuestionnaireTitles))
 
         } catch (e) {
@@ -31,7 +36,7 @@ export function fetchAllTestsTitles() {
 }
 
 export function testID(testId) {
-    console.log('УПАЛО В ФУНКЦИЮ АЙДИ', testId)
+    // console.log('УПАЛО В ФУНКЦИЮ АЙДИ', testId)
     return {
         type: FETCH_TEST_ID,
         testId: testId
@@ -58,7 +63,7 @@ export function fetchActiveTest(testId) {
         let questions = []
         try {
             const response = await axios.get(`https://quiz-316f6.firebaseio.com/quizes/${testId}.json`)
-            console.log('ОТВЕТ ОТ СЕРВЕРА ', response)
+            // console.log('ОТВЕТ ОТ СЕРВЕРА ', response)
             response.data.forEach(item => {
                 Title = item.questionareTitle
                 questions.push(item)
@@ -72,16 +77,18 @@ export function fetchActiveTest(testId) {
 }
 
 export function answerClick(answerId) {
-    return async dispatch => {
-        if (this.answerState) {
-            const key = Object.keys(this.answerState)[0]
-            if (this.answerState[key] === 'success') {
+    return (dispatch,getState)  => {
+        const state = getState().allTests
+        // console.log('ПРИХОДИТ СТЕЙТ', state)
+        if (state.answerState) {
+            const key = Object.keys(state.answerState)[0]
+            if (state.answerState[key] === 'success') {
                 return
             }
         }
 
-        const question = this.questions[this.activeQuestion]
-        const result = this.results
+        const question = state.questions[state.activeQuestion]
+        const result = state.results
 
 
         if (question.rightAnswerId === answerId) {
@@ -91,23 +98,41 @@ export function answerClick(answerId) {
 
             dispatch(Answer({ [answerId]: 'success' }, result))
 
-            const timeout = setTimeout(() => {
-                if (isQuestionnaireFinished()) {
+            const timeout = window.setTimeout(() => {
+                // console.log('ОПРОС ОКОНЧЕН?',isQuestionnaireFinished(state))
+                if (isQuestionnaireFinished(state)) {
                     dispatch(QuestionnaireFinished())
                 } else {
-                    dispatch(nextQuestion())
+                    dispatch(nextQuestion(state.activeQuestion + 1))
                 }
                 window.clearTimeout(timeout)
             }, 1000)
 
         } else {
             result[question.id] = 'error'
-            dispatch(Answer({ [answerId]: 'error' }, result))
+            dispatch(Answer({[answerId]: 'error'}, result))
+            const timeout = window.setTimeout(() => {
+                // console.log('ОПРОС ОКОНЧЕН?',isQuestionnaireFinished(state))
+                if (isQuestionnaireFinished(state)) {
+                    dispatch(QuestionnaireFinished())
+                } else {
+                    dispatch(nextQuestion(state.activeQuestion + 1))
+                }
+                window.clearTimeout(timeout)
+            }, 1000)
         }
     }
 }
 
+export function quizSetState(answerState, results) {
+    return {
+      type: QUIZ_SET_STATE,
+      answerState, results
+    }
+  }
+
 export function Answer(answerState, result) {
+    console.log('ВЫЗВАН АНСВЕР', answerState, result)
     return {
         type: ANSWER,
         answerState: answerState,
@@ -116,20 +141,22 @@ export function Answer(answerState, result) {
 }
 
 
-export function isQuestionnaireFinished() {
-    return this.activeQuestion + 1 === this.questions.length ? true : false
+export function isQuestionnaireFinished(state) {
+    console.log('ОПРОС ОКОНЧЕН ?', state.activeQuestion + 1 === state.questions.length)
+    return state.activeQuestion + 1 === state.questions.length
 }
 
 export function QuestionnaireFinished() {
+    console.log('ФИНИШ КВИЗ ВЫЗВАН')
     return {
         type: IS_QUESTIONNAIRE_FINISHED,
-        isFinished: true
     }
 }
 
-export function nextQuestion() {
+export function nextQuestion(number) {
     return {
         type: NEXT_QUESTION,
+        number
     }
 }
 
@@ -150,6 +177,7 @@ export function fetchActiveTestTitleQuestionsError(e) {
 }
 
 export function retryHandler() {
+    
     return {
         type: RETRY_HANDLER
     }
@@ -158,5 +186,11 @@ export function retryHandler() {
 export function repeatHandler() {
     return {
         type: REPEAT_HANDLER
+    }
+}
+
+export function guestScreenOff() {
+    return {
+        type: GUEST_SCREEN_OFF
     }
 }

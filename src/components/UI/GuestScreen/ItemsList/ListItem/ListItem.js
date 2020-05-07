@@ -4,12 +4,18 @@ import styles from './ListItem.css'
 
 
 const ListItem = (props) => {
-    // console.log('ПРОПСЫ ЛИСТ АЙТЕМА', props.id)
+    console.log('ПРОПСЫ ЛИСТ АЙТЕМА', localStorage.getItem('token'))
+    localStorage.getItem('token')
+    let url = '/'
+    if (localStorage.getItem('token')) {
+        url = '/quiz/' + props.id
+    }
+
     return (
         <li className={styles.ListItem}
             onClick={() => { props.onClick(props.id) }} // передавать айди
         >
-            <NavLink to={'/quiz/' + props.id}>
+            <NavLink to={url}>
                 {props.title}
             </NavLink>
 

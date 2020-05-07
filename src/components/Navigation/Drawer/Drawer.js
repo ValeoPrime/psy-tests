@@ -4,21 +4,14 @@ import {NavLink} from 'react-router-dom'
 import BackDrop from '../../UI/BackDrop/BackDrop'
 
 
-const links = [
-    {to: '/', label: 'Список тестов', exact: true},
-    {to: '/auth', label: 'Аутентификация', exact: false},
-    {to: '/create-quize', label: 'Создать тест', exact: false}
-]
-
 class Drawer extends Component {
 
-    renderLinks(){
+    renderLinks(links){
         return links.map((link, index) => {
             return (
                 <li key={index}
                 >
                     <NavLink
-                    
                     to={link.to}
                     exact={link.exact}
                     activeClassName={styles.active}
@@ -39,13 +32,22 @@ class Drawer extends Component {
             cls.push(styles.close)
         } 
         
+        let links = [{to: '/', label: 'Список тестов', exact: true},
         
+        ]
+
+        if(this.props.isAuthenticated){
+            links.push({to: '/create-quize', label: 'Создать тест', exact: false})
+            links.push({to: '/logout', label: 'Выйти', exact: false})
+        } else {
+            links.push({to: '/auth', label: 'Аутентификация', exact: false})
+        }
 
         return(
             <React.Fragment>
                 <nav className={cls.join(' ')}>
                     <ul>
-                        {this.renderLinks()}
+                        {this.renderLinks(links)}
                     </ul>
                 </nav>
                 

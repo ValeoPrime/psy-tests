@@ -3,20 +3,50 @@ import styles from './GuestScreen.css'
 import ItemsList from './ItemsList/ItemsList'
 import MainQuiz from '../../../containers/MainQuiz'
 import { connect } from 'react-redux'
-import { fetchAllTestsTitles, testID } from '../../../store/actions/guestScreenActions'
+import { fetchAllTestsTitles, testID, guestScreenOff } from '../../../store/actions/guestScreenActions'
+import button from '../button/button'
+import clases from '../button/button.css'
+
 
 class GuestScreen extends Component {
 
     componentDidMount() {
+        console.log('ПРОПСЫ ГОСТЕВОГо', this.props.isAuthenticated)
         this.props.fetchAllTestsTitles()
     }
 
+    redirect = () => {
+        console.log('Вызвали редирект ', this.props)
+        this.props.history.push('/auth')
+        this.props.guestScreenOff()
+            
+    }
+
     render() {
-        console.log('ОТДАЕМ АЙДИ В МЕЙН', this.props)
+        const cls = [
+            clases.button,
+            clases.success
+        ]
         return (
             <React.Fragment>
                 {
-                    this.props.guestScreen
+                    !this.props.isAuthenticated
+                    ? <div className={styles.Div}>
+                        <h1>В системе доступны следующие тесты :</h1>
+                        <ItemsList
+                            allTitles={this.props.allQuestionnaireTitles}
+                           
+                            onClick={this.props.testID}
+                        />
+                        <p>но их нельзя запустить пока вы не авторизованы</p>
+                        <button
+                            className={cls.join(' ')}
+                            onClick={this.redirect}
+                            children={'Идти сдаваться'}
+                        />
+                      </div>
+                    :
+                        this.props.guestScreen
                         ?
                         <div className={styles.GuestScreen}>
                             <h1>В системе доступны следующие тесты :</h1>
@@ -36,18 +66,20 @@ class GuestScreen extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log('СТЕЙТ ГОСТЕВОГО', state)
+    // console.log('СТЕЙТ ГОСТЕВОГО', state.allTests)
     return {
         guestScreen: state.allTests.guestScreen,
         allQuestionnaireTitles: state.allTests.allQuestionnaireTitles,
-        testId: state.allTests.testId
+        testId: state.allTests.testId,
+        isAuthenticated: !!state.auth.token
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         fetchAllTestsTitles: () => dispatch(fetchAllTestsTitles()),
-        testID: (testId) => dispatch(testID(testId))
+        testID: (testId) => dispatch(testID(testId)),
+        guestScreenOff: () => dispatch(guestScreenOff())
     }
 }
 

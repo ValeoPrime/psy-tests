@@ -11,8 +11,15 @@ import { fetchActiveTest, retryHandler, repeatHandler, answerClick } from '../st
 class MainQuiz extends Component {
     componentDidMount() {
         console.log('ПРОПСЫ МЕЙНА', this.props)
-        this.props.fetchActiveTest(this.props.location.pathname.split('/')[2])
+        this.props.fetchActiveTest(this.props.testId || this.props.location.pathname.split('/')[2])
     }
+
+    backToList = () => {
+        console.log('ВЫЗВАЛИ БЕК')
+        this.props.history.push('/')
+        this.props.repeatHandler()
+    }
+
     //this.props.location.pathname.split('/')[2]
     render() {
         return (
@@ -29,7 +36,7 @@ class MainQuiz extends Component {
                                             results={this.props.results}
                                             questions={this.props.questions}
                                             onRetry={this.props.retryHandler}
-                                            onRepeat={this.props.repeatHandler}
+                                            onRepeat={this.backToList}
                                         />
                                         : <ActiveQuestionnaire
                                             key={this.props.questions[this.props.activeQuestion].id}
@@ -50,9 +57,10 @@ class MainQuiz extends Component {
     }
 }
 function mapStateToProps(state) {
+    console.log('СТЕЙТ МЕЙНА', state.allTests)
     return {
         results: state.allTests.results, //{[id]: success error}
-        // testId: state.allTests.testId, // ccccccccccccccc
+        testId: state.allTests.testId, // ccccccccccccccc
         isFinished: state.allTests.isFinished,
         questionsLoad: state.allTests.questionsLoad,
         activeQuestion: state.allTests.activeQuestion,
@@ -66,9 +74,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         fetchActiveTest: (testId) => dispatch(fetchActiveTest(testId)),
-        retryHandler: () => retryHandler(),
-        repeatHandler: () => repeatHandler(),
-        answerClick: (answerId) => answerClick(answerId)
+        retryHandler: () => dispatch(retryHandler()),
+        repeatHandler: () => dispatch(repeatHandler()),
+        answerClick: (answerId) => dispatch(answerClick(answerId))
 
     }
 }
