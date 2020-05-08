@@ -4,6 +4,9 @@
     margin-bottom: 15px;
     color: gray;
 }
+.ListItem a {
+    color: white;
+}
 
 .ListItem:hover {
     color: white;
