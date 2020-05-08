@@ -12,4 +12,4 @@ function hello_Syberry(input_name) {
 }
 
 let name = "Valentin"
-console.log(hello_Syberry(name))
+// console.log(hello_Syberry(name))

@@ -64,7 +64,7 @@ export default function guestScreenReducer(state = intialState, action) {
             }
         }
         case RETRY_HANDLER: {
-            console.log('ВЫЗВАН КЕЙС ПОВТОРИТЬ ОПРОС', state)
+            // console.log('ВЫЗВАН КЕЙС ПОВТОРИТЬ ОПРОС', state)
             return {
                 ...state,
                 results: {},
@@ -74,7 +74,7 @@ export default function guestScreenReducer(state = intialState, action) {
             }
         }
         case REPEAT_HANDLER: {
-            console.log('ВЫЗВАН КЕЙС К СПИСКУ ВОПРОСОВ', state)
+            // console.log('ВЫЗВАН КЕЙС К СПИСКУ ВОПРОСОВ', state)
             return {
                 ...state,
                 guestScreen: true,
@@ -135,7 +135,7 @@ export default function guestScreenReducer(state = intialState, action) {
                 quiz: [...state.quiz, action.item]
             }
         case CREATE_QUIZ:
-            console.log('СРАБОТАЛ КЛЕАР КЕЙС')
+            // console.log('СРАБОТАЛ КЛЕАР КЕЙС')
             return {
                 ...state,
                 quiz: []

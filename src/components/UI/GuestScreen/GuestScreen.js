@@ -11,12 +11,12 @@ import clases from '../button/button.css'
 class GuestScreen extends Component {
 
     componentDidMount() {
-        console.log('ПРОПСЫ ГОСТЕВОГо', this.props.isAuthenticated)
+        // console.log('ПРОПСЫ ГОСТЕВОГо', this.props.isAuthenticated)
         this.props.fetchAllTestsTitles()
     }
 
     redirect = () => {
-        console.log('Вызвали редирект ', this.props)
+        // console.log('Вызвали редирект ', this.props)
         this.props.history.push('/auth')
         this.props.guestScreenOff()
             

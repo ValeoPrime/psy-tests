@@ -10,12 +10,12 @@ import { fetchActiveTest, retryHandler, repeatHandler, answerClick } from '../st
 
 class MainQuiz extends Component {
     componentDidMount() {
-        console.log('ПРОПСЫ МЕЙНА', this.props)
+        // console.log('ПРОПСЫ МЕЙНА', this.props)
         this.props.fetchActiveTest(this.props.testId || this.props.location.pathname.split('/')[2])
     }
 
     backToList = () => {
-        console.log('ВЫЗВАЛИ БЕК')
+        // console.log('ВЫЗВАЛИ БЕК')
         this.props.history.push('/')
         this.props.repeatHandler()
     }
@@ -57,7 +57,7 @@ class MainQuiz extends Component {
     }
 }
 function mapStateToProps(state) {
-    console.log('СТЕЙТ МЕЙНА', state.allTests)
+    // console.log('СТЕЙТ МЕЙНА', state.allTests)
     return {
         results: state.allTests.results, //{[id]: success error}
         testId: state.allTests.testId, // ccccccccccccccc

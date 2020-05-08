@@ -97,7 +97,7 @@ class QuizCreator extends Component {
 
     createQuizHandler = event => {
         event.preventDefault()
-        console.log('ОПрос целиком будет', this.props.quiz)
+        // console.log('ОПрос целиком будет', this.props.quiz)
         
 
             this.setState({
@@ -106,7 +106,7 @@ class QuizCreator extends Component {
                 formControls: createFormControls(),
                 questionareTitleSelected: false
             })
-            console.log('РЕЗУЛЬТАТОМ ОТПРАВКИ ОПРОСА БУДЕТ',this.props.createQuiz())
+            // console.log('РЕЗУЛЬТАТОМ ОТПРАВКИ ОПРОСА БУДЕТ',this.props.createQuiz())
         }
 
     changeHandler = (value, controlName) => {

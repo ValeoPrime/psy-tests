@@ -51,7 +51,7 @@ class Auth extends Component {
     loginHandler = (event) => {
         if (!this.state.isFormValid) {
             event.preventDefault()
-            console.log('Не прошли валидацию')
+            // console.log('Не прошли валидацию')
         }
 
         this.props.auth(this.state.formControls.email.value, this.state.formControls.password.value, true)
@@ -122,12 +122,12 @@ class Auth extends Component {
         formControls[formControl] = control
 
         let isFormValid = true
-        console.log('Волид до?', isFormValid)
+            // ('Волид до?', isFormValid)
         Object.keys(formControls).forEach(name => {
             isFormValid = formControls[name].valid && isFormValid
 
         })
-        console.log('Волид после?', isFormValid)
+        // console.log('Волид после?', isFormValid)
         this.setState({
             formControls,
             isFormValid
@@ -153,7 +153,7 @@ class Auth extends Component {
                         >
                             Войти
                         </Button>
-                        {console.log('Волид стейта', this.state.isFormValid)}
+                        {/* {console.log('Волид стейта', this.state.isFormValid)} */}
                         <Button
                             type="primary"
                             onClick={this.registerHandler}
@@ -174,7 +174,7 @@ class Auth extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('Стейт аутентификации', state)
+    // console.log('Стейт аутентификации', state)
     return {
 
     }

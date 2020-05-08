@@ -132,7 +132,7 @@ export function quizSetState(answerState, results) {
   }
 
 export function Answer(answerState, result) {
-    console.log('ВЫЗВАН АНСВЕР', answerState, result)
+    // console.log('ВЫЗВАН АНСВЕР', answerState, result)
     return {
         type: ANSWER,
         answerState: answerState,
@@ -142,12 +142,11 @@ export function Answer(answerState, result) {
 
 
 export function isQuestionnaireFinished(state) {
-    console.log('ОПРОС ОКОНЧЕН ?', state.activeQuestion + 1 === state.questions.length)
     return state.activeQuestion + 1 === state.questions.length
 }
 
 export function QuestionnaireFinished() {
-    console.log('ФИНИШ КВИЗ ВЫЗВАН')
+    // console.log('ФИНИШ КВИЗ ВЫЗВАН')
     return {
         type: IS_QUESTIONNAIRE_FINISHED,
     }
