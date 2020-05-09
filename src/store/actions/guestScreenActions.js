@@ -36,7 +36,6 @@ export function fetchAllTestsTitles() {
 }
 
 export function testID(testId) {
-    // console.log('УПАЛО В ФУНКЦИЮ АЙДИ', testId)
     return {
         type: FETCH_TEST_ID,
         testId: testId
@@ -63,7 +62,6 @@ export function fetchActiveTest(testId) {
         let questions = []
         try {
             const response = await axios.get(`https://quiz-316f6.firebaseio.com/quizes/${testId}.json`)
-            // console.log('ОТВЕТ ОТ СЕРВЕРА ', response)
             response.data.forEach(item => {
                 Title = item.questionareTitle
                 questions.push(item)
@@ -79,7 +77,7 @@ export function fetchActiveTest(testId) {
 export function answerClick(answerId) {
     return (dispatch,getState)  => {
         const state = getState().allTests
-        // console.log('ПРИХОДИТ СТЕЙТ', state)
+
         if (state.answerState) {
             const key = Object.keys(state.answerState)[0]
             if (state.answerState[key] === 'success') {
@@ -90,7 +88,6 @@ export function answerClick(answerId) {
         const question = state.questions[state.activeQuestion]
         const result = state.results
 
-
         if (question.rightAnswerId === answerId) {
             if (!result[question.id]) {
                 result[question.id] = 'success'
@@ -99,7 +96,6 @@ export function answerClick(answerId) {
             dispatch(Answer({ [answerId]: 'success' }, result))
 
             const timeout = window.setTimeout(() => {
-                // console.log('ОПРОС ОКОНЧЕН?',isQuestionnaireFinished(state))
                 if (isQuestionnaireFinished(state)) {
                     dispatch(QuestionnaireFinished())
                 } else {
@@ -112,7 +108,6 @@ export function answerClick(answerId) {
             result[question.id] = 'error'
             dispatch(Answer({[answerId]: 'error'}, result))
             const timeout = window.setTimeout(() => {
-                // console.log('ОПРОС ОКОНЧЕН?',isQuestionnaireFinished(state))
                 if (isQuestionnaireFinished(state)) {
                     dispatch(QuestionnaireFinished())
                 } else {
@@ -132,7 +127,6 @@ export function quizSetState(answerState, results) {
   }
 
 export function Answer(answerState, result) {
-    // console.log('ВЫЗВАН АНСВЕР', answerState, result)
     return {
         type: ANSWER,
         answerState: answerState,
@@ -146,7 +140,6 @@ export function isQuestionnaireFinished(state) {
 }
 
 export function QuestionnaireFinished() {
-    // console.log('ФИНИШ КВИЗ ВЫЗВАН')
     return {
         type: IS_QUESTIONNAIRE_FINISHED,
     }
@@ -176,7 +169,6 @@ export function fetchActiveTestTitleQuestionsError(e) {
 }
 
 export function retryHandler() {
-    
     return {
         type: RETRY_HANDLER
     }

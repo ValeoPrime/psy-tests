@@ -11,7 +11,6 @@ import styles from './Select.css'
         value={props.value}
         onChange={props.onChange}
         >
-
             { props.options.map((option, index) =>{
                 return (
                     <option
@@ -19,8 +18,7 @@ import styles from './Select.css'
                     key={option.value + index}
                     >
                         {option.text}
-                    </option>
-                    
+                    </option>  
                 )
             })}
         </select>

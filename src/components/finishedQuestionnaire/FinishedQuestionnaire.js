@@ -27,8 +27,7 @@ const FinishedQuestionnaire = (props) => {
                         </li>
                     )
                 })
-                }
-              
+                }  
             </ul>
 
             <p>Правильно {rightAnswers} из {props.questions.length}</p>

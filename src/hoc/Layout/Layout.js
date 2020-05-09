@@ -27,6 +27,7 @@ class Layout extends Component {
             "background-color": 'red'
         }
     }
+
     render() {
         return (
             <div className={styles.Layout}>
@@ -39,8 +40,6 @@ class Layout extends Component {
                     onToggle={this.ToogleMenu}
                     isOpen={this.state.menu}
                 />
-
-
 
                 <main>
                     {this.props.children}

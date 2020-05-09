@@ -33,7 +33,6 @@ class App extends Component {
           <Route path="/quiz/:id" component={MainQuiz} />
           <Route path="/logout" component={Logout} />
           <Route path="/" exact component={GuestScreen} />
-          
           <Redirect to={'/'} />
         </Switch>
       )
@@ -54,8 +53,6 @@ function mapStateToProps(state) {
     isAuthenticated: !!state.auth.token
   }
 }
-
-
 
 function mapDispatchToProps(dispatch) {
   return {

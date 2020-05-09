@@ -11,15 +11,12 @@ import clases from '../button/button.css'
 class GuestScreen extends Component {
 
     componentDidMount() {
-        // console.log('ПРОПСЫ ГОСТЕВОГо', this.props.isAuthenticated)
         this.props.fetchAllTestsTitles()
     }
 
     redirect = () => {
-        // console.log('Вызвали редирект ', this.props)
         this.props.history.push('/auth')
         this.props.guestScreenOff()
-            
     }
 
     render() {
@@ -35,7 +32,6 @@ class GuestScreen extends Component {
                         <h1>В системе доступны следующие тесты :</h1>
                         <ItemsList
                             allTitles={this.props.allQuestionnaireTitles}
-                           
                             onClick={this.props.testID}
                         />
                         <p>но их нельзя запустить пока вы не авторизованы</p>
@@ -66,7 +62,6 @@ class GuestScreen extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log('СТЕЙТ ГОСТЕВОГО', state.allTests)
     return {
         guestScreen: state.allTests.guestScreen,
         allQuestionnaireTitles: state.allTests.allQuestionnaireTitles,

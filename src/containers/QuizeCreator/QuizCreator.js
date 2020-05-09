@@ -44,7 +44,6 @@ function createFormControls() {
 class QuizCreator extends Component {
 
     state = {
-        // quiz: [],
         questionareTitleSelected: false,
         questionareTitle: '',
         isFormValid: false,
@@ -84,21 +83,16 @@ class QuizCreator extends Component {
             ]
         }
         this.props.addQuestion(questionItem)
-        // console.log('РЕЗУЛЬТАТОМ ВЫЗОВА ПУШЕРА БУДЕТ',this.props.addQuestion(questionItem))
 
         this.setState({
             isFormValid: false,
             rightAnswerId: 1,
             formControls: createFormControls()
         })
-        
-
     }
 
     createQuizHandler = event => {
         event.preventDefault()
-        // console.log('ОПрос целиком будет', this.props.quiz)
-        
 
             this.setState({
                 isFormValid: false,
@@ -106,7 +100,6 @@ class QuizCreator extends Component {
                 formControls: createFormControls(),
                 questionareTitleSelected: false
             })
-            // console.log('РЕЗУЛЬТАТОМ ОТПРАВКИ ОПРОСА БУДЕТ',this.props.createQuiz())
         }
 
     changeHandler = (value, controlName) => {
@@ -167,7 +160,6 @@ class QuizCreator extends Component {
 
     QuestionareTitleChange = (event) => {
         let inputValue = event.target.value
-
         this.setState({
             questionareTitle: inputValue
         })
@@ -228,17 +220,15 @@ class QuizCreator extends Component {
                         </div>
                 }
             </div>
-        )
-    }
-
+        )}
 }
 
 function mapStateToProps(state) {
-    console.log('СТЕЙТ СОЗДАНИЯ', state)
     return {
         quiz: state.allTests.quiz
     }
 }
+
 function mapDispatchToProps(dispatch) {
     return {
         addQuestion: (questionItem) => dispatch(addQuestion(questionItem)) ,

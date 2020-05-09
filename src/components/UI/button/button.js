@@ -5,7 +5,6 @@ const Button = (props) => {
     const cls = [
         styles.button,
         styles[props.type],
-        
     ]
 
     return (

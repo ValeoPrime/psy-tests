@@ -32,9 +32,7 @@ class Drawer extends Component {
             cls.push(styles.close)
         } 
         
-        let links = [{to: '/', label: 'Список тестов', exact: true},
-        
-        ]
+        let links = [{to: '/', label: 'Список тестов', exact: true}]
 
         if(this.props.isAuthenticated){
             links.push({to: '/create-quize', label: 'Создать тест', exact: false})
@@ -57,7 +55,6 @@ class Drawer extends Component {
                 /> 
                 : null}
             </React.Fragment>
-            
         )
     }
 }

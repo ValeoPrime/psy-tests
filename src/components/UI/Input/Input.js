@@ -5,9 +5,7 @@ function isInvalid({valid, touched, shouldValidate}) {
     if(!valid && shouldValidate && touched) { // контрол не валидный, подлежит валидации, в него уже что то вводили
         return true // не прошел валидацию
     }
-
     return false
-
 }
 
 const Input = (props) => {
@@ -17,7 +15,6 @@ const Input = (props) => {
 
     if(isInvalid(props)){
         cls.push(styles.invalid)
-
     }
 
 return (
@@ -34,11 +31,8 @@ return (
             ? <span>{props.errorMessage || 'Введите верное значение'}</span>
             : null
         }
-
-        
     </div>
 
-)
-}
+)}
 
 export default Input

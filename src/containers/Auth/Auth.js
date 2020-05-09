@@ -47,23 +47,18 @@ class Auth extends Component {
         event.preventDefault()
     }
 
-
     loginHandler = (event) => {
         if (!this.state.isFormValid) {
             event.preventDefault()
-            // console.log('Не прошли валидацию')
         }
 
         this.props.auth(this.state.formControls.email.value, this.state.formControls.password.value, true)
-        //сделать переход на список тестов
     }
 
 
 
     registerHandler = () => {
-
         this.props.auth(this.state.formControls.email.value, this.state.formControls.password.value, false)
-        //сделать переход на список тестов
     }
 
     renderInput() {
@@ -122,12 +117,12 @@ class Auth extends Component {
         formControls[formControl] = control
 
         let isFormValid = true
-            // ('Волид до?', isFormValid)
+
         Object.keys(formControls).forEach(name => {
             isFormValid = formControls[name].valid && isFormValid
 
         })
-        // console.log('Волид после?', isFormValid)
+        
         this.setState({
             formControls,
             isFormValid
@@ -153,7 +148,7 @@ class Auth extends Component {
                         >
                             Войти
                         </Button>
-                        {/* {console.log('Волид стейта', this.state.isFormValid)} */}
+                        
                         <Button
                             type="primary"
                             onClick={this.registerHandler}
@@ -167,16 +162,6 @@ class Auth extends Component {
 
             </div>
         )
-
-    }
-
-
-}
-
-function mapStateToProps(state) {
-    // console.log('Стейт аутентификации', state)
-    return {
-
     }
 }
 
@@ -186,5 +171,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth)
+export default connect(null, mapDispatchToProps)(Auth)
 

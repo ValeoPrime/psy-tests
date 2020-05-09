@@ -2,9 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './ListItem.css'
 
-
 const ListItem = (props) => {
-    // console.log('ПРОПСЫ ЛИСТ АЙТЕМА', localStorage.getItem('token'))
     localStorage.getItem('token')
     let url = '/'
     if (localStorage.getItem('token')) {

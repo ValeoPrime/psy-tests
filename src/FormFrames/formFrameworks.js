@@ -22,7 +22,6 @@ export function validate (value, validation = null) {
         isValid = false && isValid
     }
     return isValid
-
 }
 
 export function  validateForm(formControls){

@@ -25,9 +25,6 @@ export function auth(email, password, isLogin) {
 
         dispatch(authSuccess(response.data.idToken))
         dispatch(autoLogout(response.data.expiresIn))
-
-        // console.log('Ответ сервера', response.data)
-        // console.log('Локальное хранилище', localStorage)
     }
 }
 

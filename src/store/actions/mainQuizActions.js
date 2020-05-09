@@ -21,7 +21,6 @@ export function fetchActiveTest(){
 }
 
 export function answerClick(answerId){
-    
     if (answerState) {
         const key = Object.keys(answerState)[0]
         if (answerState[key] === 'success') {
@@ -31,7 +30,6 @@ export function answerClick(answerId){
 
     const question = questions[activeQuestion]
     const results = results
-
 
     if (question.rightAnswerId === answerId) {
         if (!results[question.id]) {
@@ -48,7 +46,6 @@ export function answerClick(answerId){
             }
             window.clearTimeout(timeout)
         }, 1000)
-
     } else {
         results[question.id] = 'error'
         dispatch(Answer({ [answerId]: 'error' }, results))
@@ -62,7 +59,6 @@ export function Answer(answerState, results){
         results: results
     }
 }
-
 
 export function isQuestionnaireFinished(){
     return activeQuestion + 1 === questions.length ? true : false
@@ -80,7 +76,6 @@ export function nextQuestion(){
         type: NEXT_QUESTION,
     }
 }
-
 
 export function fetchActiveTestTitleQuestions(title,questions) {
     return {

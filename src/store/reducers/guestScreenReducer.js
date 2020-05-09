@@ -30,7 +30,6 @@ const intialState = {
 
 
 export default function guestScreenReducer(state = intialState, action) {
-    // console.log('ГОСТЕВОЙ СТЕЙТ', state)
     switch (action.type) {
         case FETCH_ACTIVE_QUESTIONARE_TITLE_AND_QUESTIONS: {
             return {
@@ -48,7 +47,6 @@ export default function guestScreenReducer(state = intialState, action) {
             }
         }
         case IS_QUESTIONNAIRE_FINISHED: {
-            // console.log('ВЫЗВАН КЕЙС КОНЕЦ ОПРОСА', state)
             return {
                 ...state,
                 isFinished: true,
@@ -56,7 +54,6 @@ export default function guestScreenReducer(state = intialState, action) {
             }
         }
         case NEXT_QUESTION: {
-            // console.log('ВЫЗВАН КЕЙС СЛЕД. ВОПРОС', state, action.number)
             return {
                 ...state,
                 activeQuestion: action.number,
@@ -64,7 +61,6 @@ export default function guestScreenReducer(state = intialState, action) {
             }
         }
         case RETRY_HANDLER: {
-            // console.log('ВЫЗВАН КЕЙС ПОВТОРИТЬ ОПРОС', state)
             return {
                 ...state,
                 results: {},
@@ -74,21 +70,15 @@ export default function guestScreenReducer(state = intialState, action) {
             }
         }
         case REPEAT_HANDLER: {
-            // console.log('ВЫЗВАН КЕЙС К СПИСКУ ВОПРОСОВ', state)
             return {
                 ...state,
                 guestScreen: true,
-                // results: {},
                 isFinished: false,
                 activeQuestion: 0,
                 answerState: [],
-                // questionnaireTitle: null,
-                // testId: null,
-                
             }
         }
         case GUEST_SCREEN_OFF:
-            // console.log('СРАБОТАЛ КЕЙС ОТКЛЮЧИТЬ ГОСТЯ, СТЕЙТ', state)
             return {
                 ...state,
                 guestScreen: true,
@@ -105,7 +95,6 @@ export default function guestScreenReducer(state = intialState, action) {
                 quiz: []
             }
         case FETCH_QUESTIONARE_TITLES:
-            // console.log('СРАБОТАЛ КЕЙС ПОЛУЧИТЬ ВСЕ ЗАГОЛОВКИ, СТЕЙТ', state)
             return {
                 ...state,
                 allQuestionnaireTitles: action.allQuestionnaireTitles,
@@ -117,25 +106,21 @@ export default function guestScreenReducer(state = intialState, action) {
                 questionsLoad: false
             }
         case FETCH_TEST_ID:
-            // console.log('СРАБОТАЛ КЕЙС ПРИШЕЛ АЙДИ ТЕСТА, СТЕЙТ', state)
             return {
                 ...state,
                 testId: action.testId,
                 guestScreen: false
-                
             }
         case QUIZ_SET_STATE:
             return {
             ...state, answerState: action.answerState, results: action.results
             }
         case QUESTION:
-            
             return {
                 ...state,
                 quiz: [...state.quiz, action.item]
             }
         case CREATE_QUIZ:
-            // console.log('СРАБОТАЛ КЛЕАР КЕЙС')
             return {
                 ...state,
                 quiz: []
