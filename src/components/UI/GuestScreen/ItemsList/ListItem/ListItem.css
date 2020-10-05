@@ -1,0 +1,14 @@
+.ListItem {
+    cursor: pointer;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: gray;
+}
+.ListItem a {
+    color: white;
+}
+
+.ListItem:hover {
+    color: white;
+    text-decoration: underline;
+}
