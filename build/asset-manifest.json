@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/psy-tests/static/css/main.4d66aada.chunk.css",
-    "main.js": "/psy-tests/static/js/main.e08489e5.chunk.js",
-    "main.js.map": "/psy-tests/static/js/main.e08489e5.chunk.js.map",
+    "main.css": "/psy-tests/static/css/main.7aa39730.chunk.css",
+    "main.js": "/psy-tests/static/js/main.4b4aed3f.chunk.js",
+    "main.js.map": "/psy-tests/static/js/main.4b4aed3f.chunk.js.map",
     "runtime-main.js": "/psy-tests/static/js/runtime-main.2fed1e71.js",
     "runtime-main.js.map": "/psy-tests/static/js/runtime-main.2fed1e71.js.map",
     "static/js/2.cea2cf4e.chunk.js": "/psy-tests/static/js/2.cea2cf4e.chunk.js",
     "static/js/2.cea2cf4e.chunk.js.map": "/psy-tests/static/js/2.cea2cf4e.chunk.js.map",
     "index.html": "/psy-tests/index.html",
-    "precache-manifest.e3fdf9dcea48606ad2cd26490dc0588c.js": "/psy-tests/precache-manifest.e3fdf9dcea48606ad2cd26490dc0588c.js",
+    "precache-manifest.eb7c07b47a149b1ac09985008d279881.js": "/psy-tests/precache-manifest.eb7c07b47a149b1ac09985008d279881.js",
     "service-worker.js": "/psy-tests/service-worker.js",
-    "static/css/main.4d66aada.chunk.css.map": "/psy-tests/static/css/main.4d66aada.chunk.css.map",
+    "static/css/main.7aa39730.chunk.css.map": "/psy-tests/static/css/main.7aa39730.chunk.css.map",
     "static/js/2.cea2cf4e.chunk.js.LICENSE.txt": "/psy-tests/static/js/2.cea2cf4e.chunk.js.LICENSE.txt",
     "static/media/GuestScreen.css": "/psy-tests/static/media/pejzazhy_prirody_02.38780a1b.jpg",
     "static/media/QuizCreator.css": "/psy-tests/static/media/s1200.7609a723.jpg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.2fed1e71.js",
     "static/js/2.cea2cf4e.chunk.js",
-    "static/css/main.4d66aada.chunk.css",
-    "static/js/main.e08489e5.chunk.js"
+    "static/css/main.7aa39730.chunk.css",
+    "static/js/main.4b4aed3f.chunk.js"
   ]
 }
