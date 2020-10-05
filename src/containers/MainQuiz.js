@@ -55,7 +55,7 @@ class MainQuiz extends Component {
 function mapStateToProps(state) {
     return {
         results: state.allTests.results, //{[id]: success error}
-        testId: state.allTests.testId, // ccccccccccccccc
+        testId: state.allTests.testId, 
         isFinished: state.allTests.isFinished,
         questionsLoad: state.allTests.questionsLoad,
         activeQuestion: state.allTests.activeQuestion,
