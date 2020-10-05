@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styles from './Auth.css'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/button/button'
-// import axios from 'axios'
 import { connect } from 'react-redux'
 import { auth } from '../../store/actions/authActions'
 
@@ -66,7 +65,9 @@ class Auth extends Component {
             const control = this.state.formControls[formControl]
 
             return (
-                <Input
+
+                
+                    <Input
                     key={index}
                     type={control.type}
                     label={control.label}
@@ -76,6 +77,10 @@ class Auth extends Component {
                     shouldValidate={true}
                     onChange={event => this.onChangeHandler(event, formControl)}
                 />
+                
+                
+
+
             )
         })
     }
@@ -157,8 +162,13 @@ class Auth extends Component {
                             Зарегистрироваться
                         </Button>
                     </form>
+                    <div>
+                    <p>Тестовые данные для входа в систему</p>
+                        <span>mail@gmail.com</span>  <span>123698745</span>  
+                    </div>  
 
                 </div>
+                
 
             </div>
         )

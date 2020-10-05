@@ -4,7 +4,8 @@
     padding-top: 50px;
     flex-grow: 1;
     width: 100%;
-    background: linear-gradient(270deg, #f0613c 0%, #f0783c 100%);
+    /* background: linear-gradient(270deg, #f0613c 0%, #f0783c 100%); */
+    background: url('../../images/s1200.jpg') center center/cover no-repeat;
 }
 
 .QuizCreator > div {

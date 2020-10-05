@@ -38,7 +38,7 @@ class GuestScreen extends Component {
                         <button
                             className={cls.join(' ')}
                             onClick={this.redirect}
-                            children={'Идти сдаваться'}
+                            children={'Регистрация/Аутентификация'}
                         />
                       </div>
                     :

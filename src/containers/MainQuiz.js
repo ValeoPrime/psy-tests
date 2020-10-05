@@ -24,7 +24,7 @@ class MainQuiz extends Component {
                 {
                     <div className={styles.MainQuiz}>
                         <div className={styles.MainQuizWrapper}>
-                            <h1>"{this.props.questionnaireTitle}"</h1>
+                            <h1>{`"${this.props.questionnaireTitle}"`}</h1>
                             {
                                 !this.props.questionsLoad
                                     ? <Loader />
