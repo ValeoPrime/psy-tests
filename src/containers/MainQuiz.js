@@ -55,11 +55,7 @@ class MainQuiz extends Component {
 function mapStateToProps(state) {
     return {
         results: state.allTests.results, //{[id]: success error}
-<<<<<<< HEAD
         testId: state.allTests.testId, 
-=======
-        testId: state.allTests.testId, // ccccccccccccccc
->>>>>>> parent of 573fcf1... Updates
         isFinished: state.allTests.isFinished,
         questionsLoad: state.allTests.questionsLoad,
         activeQuestion: state.allTests.activeQuestion,
