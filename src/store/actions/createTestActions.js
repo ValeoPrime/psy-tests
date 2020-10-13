@@ -16,6 +16,5 @@ export function clearQuiz() {
 }
 
 export async function createQuiz(quiz, dispatch) {
-    
     await axios.post('https://quiz-316f6.firebaseio.com/quizes.json', quiz).then(res=> {console.log(res)})
 }  

@@ -19,6 +19,7 @@ class MainQuiz extends Component {
     }
 
     render() {
+        
         return (
             <React.Fragment>
                 {

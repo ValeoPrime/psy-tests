@@ -192,9 +192,9 @@ export function deleteQuestionare(id) {
 
     return async (dispatch, getState) => {
         try {
-            const response = await axios.delete(`https://quiz-316f6.firebaseio.com/quizes/${id}.json`)
+            await axios.delete(`https://quiz-316f6.firebaseio.com/quizes/${id}.json`)
 
-            dispatch(localDeleteQuestionare(getState().allTests.allQuestionnaireTitles.filter(item => item[0] != id)))
+            dispatch(localDeleteQuestionare(getState().allTests.allQuestionnaireTitles.filter(item => item[0] !== id)))
         } catch (e) {
             console.log(e);
         }

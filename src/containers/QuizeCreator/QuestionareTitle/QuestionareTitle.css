@@ -23,4 +23,6 @@
     width: 100%;
     outline: none;
     transition: all 300ms ease-in-out;
+    margin: 0 15px;
+    border-radius: 5px;
 }

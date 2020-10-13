@@ -20,6 +20,7 @@ class GuestScreen extends Component {
     }
 
     render() {
+        
         const cls = [
             clases.button,
             clases.success
