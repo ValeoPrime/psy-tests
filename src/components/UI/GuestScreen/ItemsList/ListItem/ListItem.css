@@ -3,6 +3,15 @@
     font-size: 24px;
     margin-bottom: 15px;
     color: gray;
+    padding: 10px;
+    border: 1px solid blue;
+    border-radius: 15px;
+    transition: 0.1s;
+    margin: 10px 30px;
+}
+.ListItem:hover {
+    box-shadow: 1600px 0 0 0 rgba(0,0,0,.3) inset;
+    animation: all 1s;
 }
 .ListItem a {
     color: white;

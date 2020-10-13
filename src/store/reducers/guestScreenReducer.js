@@ -7,8 +7,8 @@ import {
     IS_QUESTIONNAIRE_FINISHED,
     NEXT_QUESTION,
     REPEAT_HANDLER,
-    QUESTION,
-    CREATE_QUIZ,
+    // QUESTION,
+    // CREATE_QUIZ,
     GUEST_SCREEN_OFF,
     QUIZ_SET_STATE
 } from '../actions/actionTypes'
@@ -25,7 +25,7 @@ const intialState = {
     questionnaireTitle: '',
     key: null,
     questions: [],
-    quiz: []
+    // quiz: []
 }
 
 
@@ -115,16 +115,16 @@ export default function guestScreenReducer(state = intialState, action) {
             return {
             ...state, answerState: action.answerState, results: action.results
             }
-        case QUESTION:
-            return {
-                ...state,
-                quiz: [...state.quiz, action.item]
-            }
-        case CREATE_QUIZ:
-            return {
-                ...state,
-                quiz: []
-            }
+        // case QUESTION:
+        //     return {
+        //         ...state,
+        //         quiz: [...state.quiz, action.item]
+        //     }
+        // case CREATE_QUIZ:
+        //     return {
+        //         ...state,
+        //         quiz: []
+        //     }
         case FETCH_QUESTIONARE_TITLES_ERROR:
         default:
             return state

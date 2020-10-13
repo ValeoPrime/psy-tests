@@ -6,7 +6,8 @@ import Button from '../../components/UI/button/button'
 import { createControl, validate, validateForm } from './../../FormFrames/formFrameworks';
 import QuestionareTitle from './QuestionareTitle/QuestionareTitle'
 import { connect } from 'react-redux'
-import { addQuestion, createQuiz } from '../../store/actions/createTestActions'
+import { addQuestion, createQuiz, clearQuiz } from '../../store/actions/createTestActions'
+
 
 function createFormControls() {
     return {
@@ -50,6 +51,7 @@ class QuizCreator extends Component {
         rightAnswerId: 1,
         formControls: createFormControls()
     }
+    ;
 
     submitHandler = event => {
         event.preventDefault()
@@ -82,6 +84,7 @@ class QuizCreator extends Component {
                 }
             ]
         }
+        console.log('Пропсы',this.props);
         this.props.addQuestion(questionItem)
 
         this.setState({
@@ -89,9 +92,10 @@ class QuizCreator extends Component {
             rightAnswerId: 1,
             formControls: createFormControls()
         })
+        
     }
 
-    createQuizHandler = event => {
+    createQuizHandler = async (event) => {
         event.preventDefault()
 
             this.setState({
@@ -100,6 +104,10 @@ class QuizCreator extends Component {
                 formControls: createFormControls(),
                 questionareTitleSelected: false
             })
+
+            createQuiz(this.props.quiz)
+            clearQuiz()
+            
         }
 
     changeHandler = (value, controlName) => {
@@ -225,14 +233,15 @@ class QuizCreator extends Component {
 
 function mapStateToProps(state) {
     return {
-        quiz: state.allTests.quiz
+        quiz: state.createQuizi.quiz
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        addQuestion: (questionItem) => dispatch(addQuestion(questionItem)) ,
-        createQuiz: () => dispatch(createQuiz())
+        addQuestion: (questionItem) => dispatch(addQuestion(questionItem)),
+        createQuiz: (quiz) => dispatch(createQuiz(quiz)),
+        clearQuiz: ()=> dispatch(clearQuiz())
     }
 }
 

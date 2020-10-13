@@ -18,3 +18,19 @@
     margin-left: 10px;
 }
 
+.bigInt {
+    display: flex;
+    padding: 10px;
+    border: 1px solid yellow;
+    border-radius: 15px;
+    justify-content: space-around;
+}
+.bigInt .bigInt__success, .bigInt .bigInt__error {
+    text-align: center;
+}
+
+.bigInt span {
+    font-size: 45px;
+}
+ 
+
