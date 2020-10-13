@@ -7,7 +7,7 @@ export function fetchActiveTest(){
         let questions = []
         try {
             const response = await axios.get(`https://quiz-316f6.firebaseio.com/quizes/${testId}.json`)
-            console.log('ОТВЕТ ОТ СЕРВЕРА ', response)
+            
             response.data.forEach(item => {
                 Title = item.questionareTitle
                 questions.push(item)

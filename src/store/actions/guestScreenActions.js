@@ -10,7 +10,8 @@ import {    FETCH_QUESTIONARE_TITLES,
     NEXT_QUESTION,
     REPEAT_HANDLER,
     GUEST_SCREEN_OFF,
-    QUIZ_SET_STATE
+    QUIZ_SET_STATE,
+    DELETE_QUESTIONARE
 } from './actionTypes'
 
 export function fetchAllTestsTitles() {
@@ -25,7 +26,7 @@ export function fetchAllTestsTitles() {
                 allQuestionnaireTitles.push(t)
 
             })
-            // console.log('ВСЕ ЗАГОЛОВКИ ОПРОСОВ', allQuestionnaireTitles)
+            
             dispatch(fetchAllQuestionnaireTitles(allQuestionnaireTitles))
 
         } catch (e) {
@@ -183,5 +184,27 @@ export function repeatHandler() {
 export function guestScreenOff() {
     return {
         type: GUEST_SCREEN_OFF
+    }
+}
+
+export function deleteQuestionare(id) {
+    
+
+    return async (dispatch, getState) => {
+        try {
+            const response = await axios.delete(`https://quiz-316f6.firebaseio.com/quizes/${id}.json`)
+
+            dispatch(localDeleteQuestionare(getState().allTests.allQuestionnaireTitles.filter(item => item[0] != id)))
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    
+}
+
+function localDeleteQuestionare (allQuestionnaireTitles){
+    return {
+        type: DELETE_QUESTIONARE,
+        allQuestionnaireTitles
     }
 }

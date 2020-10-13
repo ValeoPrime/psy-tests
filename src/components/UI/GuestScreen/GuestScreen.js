@@ -3,7 +3,7 @@ import styles from './GuestScreen.css'
 import ItemsList from './ItemsList/ItemsList'
 import MainQuiz from '../../../containers/MainQuiz'
 import { connect } from 'react-redux'
-import { fetchAllTestsTitles, testID, guestScreenOff } from '../../../store/actions/guestScreenActions'
+import { fetchAllTestsTitles, testID, guestScreenOff, deleteQuestionare } from '../../../store/actions/guestScreenActions'
 import button from '../button/button'
 import clases from '../button/button.css'
 
@@ -33,6 +33,7 @@ class GuestScreen extends Component {
                         <ItemsList
                             allTitles={this.props.allQuestionnaireTitles}
                             onClick={this.props.testID}
+                            
                         />
                         <p>но их нельзя запустить пока вы не авторизованы</p>
                         <button
@@ -47,8 +48,9 @@ class GuestScreen extends Component {
                         <div className={styles.GuestScreen}>
                             <h1>В системе доступны следующие тесты :</h1>
                             <ItemsList
-                                onClick={this.props.testID}
+                                startTest={this.props.testID}
                                 allTitles={this.props.allQuestionnaireTitles}
+                                delete = {this.props.deleteQuestionare}
                             />
                         </div>
                         :
@@ -74,7 +76,8 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchAllTestsTitles: () => dispatch(fetchAllTestsTitles()),
         testID: (testId) => dispatch(testID(testId)),
-        guestScreenOff: () => dispatch(guestScreenOff())
+        guestScreenOff: () => dispatch(guestScreenOff()),
+        deleteQuestionare: (id) => dispatch(deleteQuestionare(id))
     }
 }
 

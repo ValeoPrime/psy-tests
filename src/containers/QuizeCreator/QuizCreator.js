@@ -84,7 +84,7 @@ class QuizCreator extends Component {
                 }
             ]
         }
-        console.log('Пропсы',this.props);
+        
         this.props.addQuestion(questionItem)
 
         this.setState({

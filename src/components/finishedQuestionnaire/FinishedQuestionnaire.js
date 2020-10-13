@@ -9,7 +9,6 @@ const FinishedQuestionnaire = (props) => {
     }
     return accum;
   }, 0);
-  console.log(props);
   return (
     <div className={styles.FinishedQuestionnaire}>
       <div className={styles.bigInt}>

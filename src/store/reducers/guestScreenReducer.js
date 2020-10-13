@@ -10,7 +10,8 @@ import {
     // QUESTION,
     // CREATE_QUIZ,
     GUEST_SCREEN_OFF,
-    QUIZ_SET_STATE
+    QUIZ_SET_STATE,
+    DELETE_QUESTIONARE
 } from '../actions/actionTypes'
 
 const intialState = {
@@ -125,6 +126,11 @@ export default function guestScreenReducer(state = intialState, action) {
         //         ...state,
         //         quiz: []
         //     }
+        case DELETE_QUESTIONARE:
+            return {
+                ...state, allQuestionnaireTitles: action.allQuestionnaireTitles
+                
+            }
         case FETCH_QUESTIONARE_TITLES_ERROR:
         default:
             return state

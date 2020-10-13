@@ -1,23 +1,30 @@
 .ListItem {
-    cursor: pointer;
     font-size: 24px;
     margin-bottom: 15px;
     color: gray;
-    padding: 10px;
+    padding: 10px 10px 45px 10px;
     border: 1px solid blue;
     border-radius: 15px;
     transition: 0.1s;
-    margin: 10px 30px;
+    margin: 10px auto;
+    max-width: 300px;
+    background-color: rgba(0,0,0,.8);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
 }
+.ListItem + .ListItem {
+    margin-left: 20px;
+}
+
 .ListItem:hover {
-    box-shadow: 1600px 0 0 0 rgba(0,0,0,.3) inset;
+    box-shadow: 1600px 0 0 0 rgba(255,255,255,.3) inset;
     animation: all 1s;
 }
 .ListItem a {
     color: white;
+    text-decoration: none;
 }
 
 .ListItem:hover {
     color: white;
-    text-decoration: underline;
 }

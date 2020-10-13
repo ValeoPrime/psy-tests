@@ -40,3 +40,27 @@
     background: #2884f6;
     color: #fff;
 }
+
+.entry {
+    background-color: #1aa11e;
+    display: block;
+    position: absolute;
+    padding: 5px;
+    bottom: 5px;
+    margin: 0;
+    left: calc(50% - 36px);
+}
+
+.delete {
+    background: darkred;
+    color: black;
+    margin-left: 10px;
+    display: block;
+    margin: 10px auto;
+    text-decoration: none;
+    padding: 5px;
+    margin: 0;
+    position: absolute;
+    top: -15px;
+    right: -10px;
+}

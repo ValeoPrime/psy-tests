@@ -14,7 +14,8 @@ const ItemsList = (props) => {
                             id={title[0]}
                             key={index}
                             title={title[1]}
-                            onClick={props.onClick}
+                            startTest={props.startTest}
+                            delete = {props.delete}
                         />
                     )
                 })}
