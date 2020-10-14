@@ -5,6 +5,7 @@ import ListItem from './ListItem/ListItem'
 
 
 const ItemsList = (props) => {
+    
     return (
         <ul className={styles.itemsList}>
             {
@@ -14,8 +15,10 @@ const ItemsList = (props) => {
                             id={title[0]}
                             key={index}
                             title={title[1]}
-                            startTest={props.startTest}
-                            delete = {props.delete}
+                            disabled = {props.disabled || null}
+                            
+                            startTest={props.startTest || null}
+                            delete = {props.delete || null}
                         />
                     )
                 })}

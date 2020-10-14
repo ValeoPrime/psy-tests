@@ -15,7 +15,8 @@ import {
   createQuiz,
   clearQuiz,
 } from "../../store/actions/createTestActions";
-import {fetchAllTestsTitles} from '../../store/actions/guestScreenActions'
+import {guestScreenOff} from '../../store/actions/guestScreenActions'
+
 
 
 
@@ -131,7 +132,7 @@ class QuizCreator extends Component {
     clearQuiz();
     console.log('Все опросы',this.props); 
     this.props.history.push('/')
-    
+    guestScreenOff()
     
     
     
@@ -284,6 +285,7 @@ function mapDispatchToProps(dispatch) {
     addQuestion: (questionItem) => dispatch(addQuestion(questionItem)),
     createQuiz: (quiz) => dispatch(createQuiz(quiz)),
     clearQuiz: () => dispatch(clearQuiz()),
+    
   };
 }
 

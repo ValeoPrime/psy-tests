@@ -14,7 +14,8 @@ class MainQuiz extends Component {
     }
 
     backToList = () => {
-        this.props.history.push('/')
+        console.log('Проперти',this.props);
+        // this.props.history.push('/')
         this.props.repeatHandler()
     }
 

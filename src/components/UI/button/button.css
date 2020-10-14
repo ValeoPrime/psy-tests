@@ -51,6 +51,10 @@
     left: calc(50% - 36px);
 }
 
+button:disabled {
+    background-color: rgb(17, 9, 54);
+}
+
 .delete {
     background: darkred;
     color: black;
@@ -61,6 +65,6 @@
     padding: 5px;
     margin: 0;
     position: absolute;
-    top: -15px;
-    right: -10px;
+    top: 0;
+    right: 0
 }

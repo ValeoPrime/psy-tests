@@ -16,7 +16,7 @@ import {
 
 const intialState = {
     guestScreen: true,
-    allQuestionnaireTitles: ['Тестовый заголовок', 'Тестовый заголовок 2'],
+    allQuestionnaireTitles: ['Тестов не найдено'],
     results: {}, //{[id]: success error}
     testId: null, //||   props.location.pathname.split('/')[2],
     isFinished: false,

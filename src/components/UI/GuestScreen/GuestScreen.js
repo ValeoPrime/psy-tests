@@ -4,8 +4,8 @@ import ItemsList from './ItemsList/ItemsList'
 import MainQuiz from '../../../containers/MainQuiz'
 import { connect } from 'react-redux'
 import { fetchAllTestsTitles, testID, guestScreenOff, deleteQuestionare } from '../../../store/actions/guestScreenActions'
-import button from '../button/button'
-import clases from '../button/button.css'
+import Button from '../button/button'
+
 
 
 class GuestScreen extends Component {
@@ -20,11 +20,7 @@ class GuestScreen extends Component {
     }
 
     render() {
-        
-        const cls = [
-            clases.button,
-            clases.success
-        ]
+
         return (
             <React.Fragment>
                 {
@@ -32,15 +28,14 @@ class GuestScreen extends Component {
                     ? <div className={styles.Div}>
                         <h1>В системе доступны следующие тесты :</h1>
                         <ItemsList
-                            allTitles={this.props.allQuestionnaireTitles}
-                            onClick={this.props.testID}
-                            
+                            allTitles={this.props.allQuestionnaireTitles} 
+                            disabled = {true} 
                         />
                         <p>но их нельзя запустить пока вы не авторизованы</p>
-                        <button
-                            className={cls.join(' ')}
-                            onClick={this.redirect}
+                        <Button
+                            type="success"
                             children={'Регистрация/Аутентификация'}
+                            onClick={this.redirect}
                         />
                       </div>
                     :
