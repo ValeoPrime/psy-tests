@@ -26,3 +26,11 @@
     margin: 0 15px;
     border-radius: 5px;
 }
+
+.QuestionareTitle .imgLabel {
+    font-size: 18px;
+}
+
+.error {
+    color: rgb(231, 17, 17);
+}

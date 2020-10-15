@@ -22,8 +22,14 @@ export function fetchAllTestsTitles() {
             const allQuestionnaireTitles = []
 
             Object.keys(response.data).forEach(key => {
+                
                 let t = [key, response.data[key][0].questionareTitle]
-                allQuestionnaireTitles.push(t)
+                let b = response.data[key][0].questionareImg //Добавление картинки к заголовкам тестов
+                t.push(b)
+                
+                
+                
+                allQuestionnaireTitles.push(t)  
 
             })
             

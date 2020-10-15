@@ -15,6 +15,7 @@ const ItemsList = (props) => {
                             id={title[0]}
                             key={index}
                             title={title[1]}
+                            questionareImg = {title[title.length - 1]}
                             disabled = {props.disabled || null}
                             
                             startTest={props.startTest || null}

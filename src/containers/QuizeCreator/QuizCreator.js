@@ -15,10 +15,7 @@ import {
   createQuiz,
   clearQuiz,
 } from "../../store/actions/createTestActions";
-import {guestScreenOff} from '../../store/actions/guestScreenActions'
-
-
-
+import { guestScreenOff } from "../../store/actions/guestScreenActions";
 
 function createFormControls() {
   return {
@@ -74,6 +71,7 @@ class QuizCreator extends Component {
     isFormValid: false,
     rightAnswerId: 1,
     formControls: createFormControls(),
+    questionareImg: 'ozerMin'
   };
 
   submitHandler = (event) => {
@@ -82,9 +80,10 @@ class QuizCreator extends Component {
 
   addQuestionHandler = (event) => {
     event.preventDefault();
-    
+
     const questionItem = {
       questionareTitle: this.state.questionareTitle,
+      questionareImg: this.state.questionareImg,
       question: this.state.formControls.question.value,
       id: this.props.quiz.length + 1,
       rightAnswerId: this.state.rightAnswerId,
@@ -115,7 +114,6 @@ class QuizCreator extends Component {
       rightAnswerId: 1,
       formControls: createFormControls(),
     });
-    
   };
 
   createQuizHandler = async (event) => {
@@ -127,15 +125,12 @@ class QuizCreator extends Component {
       formControls: createFormControls(),
       questionareTitleSelected: false,
     });
-    
+
     createQuiz(this.props.quiz);
     clearQuiz();
-    console.log('Все опросы',this.props); 
-    this.props.history.push('/')
-    guestScreenOff()
-    
-    
-    
+    console.log("Все опросы", this.props);
+    this.props.history.push("/");
+    guestScreenOff();
   };
 
   changeHandler = (value, controlName) => {
@@ -201,6 +196,13 @@ class QuizCreator extends Component {
     });
   };
 
+  QuestionareImgHandler = (event) => {
+    let inputValue = event.target.value;
+    this.setState({
+      questionareImg: inputValue,
+    });
+  };
+
   render() {
     const select = (
       <Select
@@ -221,6 +223,8 @@ class QuizCreator extends Component {
           <QuestionareTitle
             QuestionareTitle={this.questionareTitle}
             QuestionareTitleChange={this.QuestionareTitleChange}
+            QuestionareImgHandler={this.QuestionareImgHandler}
+            questionareImg={this.state.questionareImg}
             errorMessage={
               this.state.questionareTitle.trim().length > 5
                 ? null
@@ -228,34 +232,39 @@ class QuizCreator extends Component {
             }
           />
         ) : (
-        <React.Fragment>
-          <div>
-            <form onSubmit={this.submitHandler}>
-            <h1>Создание теста</h1>
-              {this.renderInputs()}
+          <React.Fragment>
+            {console.log(this.state)}
+            <div>
+              <form onSubmit={this.submitHandler}>
+                <h1>Создание теста</h1>
+                {this.renderInputs()}
 
-              {select}
-
-              <Button
-                type="primary"
-                onClick={this.addQuestionHandler}
-                disabled={!this.state.isFormValid}
-              >
-                Добавить вопрос
-              </Button>
-
-              
-            </form>
-          </div>
-          <div>
+                {select}
+                
+                <Button
+                  type="primary"
+                  onClick={this.addQuestionHandler}
+                  disabled={!this.state.isFormValid}
+                >
+                  Добавить вопрос
+                </Button>
+              </form>
+            </div>
+            <div>
               <h2>Детализация создаваемого теста</h2>
 
-        <h3>Заголовок теста '{this.state.questionareTitle}'</h3>
-        <div>В тест добавлено вопросов {this.props.quiz.length > 0 ? this.props.quiz.length : 0}</div>
-              <ul className= {styles.details}>
+              <h3>Заголовок теста '{this.state.questionareTitle}'</h3>
+              <div>
+                В тест добавлено вопросов{" "}
+                {this.props.quiz.length > 0 ? this.props.quiz.length : 0}
+              </div>
+              <ul className={styles.details}>
                 {this.props.quiz.map((question, index) => {
-                  return <li key={index}>{index + 1}. {question.question}</li>
-                  
+                  return (
+                    <li key={index}>
+                      {index + 1}. {question.question}
+                    </li>
+                  );
                 })}
               </ul>
               <Button
@@ -265,8 +274,8 @@ class QuizCreator extends Component {
               >
                 Создать тест
               </Button>
-          </div>
-        </React.Fragment>
+            </div>
+          </React.Fragment>
         )}
       </div>
     );
@@ -285,7 +294,6 @@ function mapDispatchToProps(dispatch) {
     addQuestion: (questionItem) => dispatch(addQuestion(questionItem)),
     createQuiz: (quiz) => dispatch(createQuiz(quiz)),
     clearQuiz: () => dispatch(clearQuiz()),
-    
   };
 }
 

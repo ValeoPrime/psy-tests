@@ -1,20 +1,28 @@
 .ListItem {
     font-size: 24px;
-    padding: 10px 10px 45px 10px;
+    padding: 10px 20px 45px 160px;
     transition: 0.1s;
     margin: 10px auto;
     position: relative;
     width: 480px;
     height: 144px;
-    overflow-x: hidden;
+    overflow: hidden;
     text-decoration: none;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 3px 6px 0 rgba(0,0,0,.12),0 0 1px 0 rgba(0,0,0,.12);
     color: #37383c;
     cursor: pointer;
-    
 }
+
+.image {
+    width: 160px;
+    height: 144px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 .ListItem + .ListItem {
     margin-left: 20px;
 }

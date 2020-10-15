@@ -12,6 +12,7 @@ class GuestScreen extends Component {
 
     componentDidMount() {
         this.props.fetchAllTestsTitles()
+        
     }
 
     redirect = () => {
@@ -20,7 +21,7 @@ class GuestScreen extends Component {
     }
 
     render() {
-
+       console.log('Пропсы гостя',this.props);
         return (
             <React.Fragment>
                 {
@@ -63,6 +64,7 @@ function mapStateToProps(state) {
     return {
         guestScreen: state.allTests.guestScreen,
         allQuestionnaireTitles: state.allTests.allQuestionnaireTitles,
+        
         testId: state.allTests.testId,
         isAuthenticated: !!state.auth.token
     }
