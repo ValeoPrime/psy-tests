@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/psy-tests/static/css/main.6ca6ab22.chunk.css",
+    "main.js": "/psy-tests/static/js/main.097775ce.chunk.js",
+    "main.js.map": "/psy-tests/static/js/main.097775ce.chunk.js.map",
+    "runtime-main.js": "/psy-tests/static/js/runtime-main.2fed1e71.js",
+    "runtime-main.js.map": "/psy-tests/static/js/runtime-main.2fed1e71.js.map",
+    "static/js/2.c7266c72.chunk.js": "/psy-tests/static/js/2.c7266c72.chunk.js",
+    "static/js/2.c7266c72.chunk.js.map": "/psy-tests/static/js/2.c7266c72.chunk.js.map",
+    "index.html": "/psy-tests/index.html",
+    "precache-manifest.1cef5ece8e7a67a57f01ba427009e812.js": "/psy-tests/precache-manifest.1cef5ece8e7a67a57f01ba427009e812.js",
+    "service-worker.js": "/psy-tests/service-worker.js",
+    "static/css/main.6ca6ab22.chunk.css.map": "/psy-tests/static/css/main.6ca6ab22.chunk.css.map",
+    "static/js/2.c7266c72.chunk.js.LICENSE.txt": "/psy-tests/static/js/2.c7266c72.chunk.js.LICENSE.txt",
+    "static/media/GuestScreen.css": "/psy-tests/static/media/pejzazhy_prirody_02.38780a1b.jpg",
+    "static/media/biology-min.jpg": "/psy-tests/static/media/biology-min.8e9a8607.jpg",
+    "static/media/chemistry-min.png": "/psy-tests/static/media/chemistry-min.cd9be381.png",
+    "static/media/geography-min.jpg": "/psy-tests/static/media/geography-min.7fb6283a.jpg",
+    "static/media/ozer-min.jpeg": "/psy-tests/static/media/ozer-min.54ef2ae2.jpeg",
+    "static/media/QuizCreator.css": "/psy-tests/static/media/s1200.7609a723.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2fed1e71.js",
+    "static/js/2.c7266c72.chunk.js",
+    "static/css/main.6ca6ab22.chunk.css",
+    "static/js/main.097775ce.chunk.js"
+  ]
+}
